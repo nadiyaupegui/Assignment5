@@ -6,7 +6,10 @@
 #include <string>
 using namespace std;
 
-Faculty::Faculty() : Person() {}
+Faculty::Faculty() : Person()
+{
+    //Need to declare whatever advisees is
+}
 
 Faculty::~Faculty(){}
 
@@ -18,7 +21,7 @@ void Faculty::setAdvisees(){} //This method needs work depending on how we store
 
 void Faculty::setDept(const std::string str){dept = str;}
 
-const int* Faculty::getAdvisees() const{return advisees;}
+const int* Faculty::getAdvisees() const{return advisees;} //This also needs work
 
 const std::string Faculty::getDept() const{return dept;}
 

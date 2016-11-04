@@ -8,15 +8,15 @@
 #include <cstdlib>
 using namespace std;
 
-Student::Student() : Person(){}
+Student::Student() : Person(), advisor(0), gpa(-1){major = "";} //Why is major not setting with shortcut?
 
 Student::~Student(){}
 
-void Student::setID(const unsigned int n){}
+void Student::setID(const unsigned int n){ID = n;}
 
-void Student::setLevel(const std::string str){}
+void Student::setLevel(const std::string str){level = str;}
 
-void Student::setAdvisor(const unsigned int n){}
+void Student::setAdvisor(const unsigned int n){advisor = n;}
 
 void Student::setGPA(const double n)
 {
