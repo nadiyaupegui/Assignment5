@@ -12,7 +12,7 @@ public:
     ~Faculty();
     void setID(const unsigned int n);
     void setLevel(const std::string str);
-    void setAdvisees(const unsigned int n);
+    void setAdvisees();
     void setDept(const std::string str);
 
     const int* getAdvisees() const;
@@ -24,7 +24,7 @@ public:
     bool operator>(const Faculty f);
 
 private:
-    int* advisees;
+    int* advisees; //Maybe a doubly linked list instead? idk
     std::string dept;
 
 };

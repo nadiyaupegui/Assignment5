@@ -15,7 +15,7 @@ public:
     const unsigned int getID() const;
     const std::string getLevel()const;
 
-private:
+protected:
     std::string name;
     unsigned int ID; 
     std::string level;

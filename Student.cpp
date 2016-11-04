@@ -8,7 +8,7 @@
 #include <cstdlib>
 using namespace std;
 
-Student::Student() : Perons(){}
+Student::Student() : Person(){}
 
 Student::~Student(){}
 
