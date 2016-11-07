@@ -12,13 +12,13 @@ Student::Student() : Person(), advisor(0), gpa(-1){major = "";} //Why is major n
 
 Student::~Student(){}
 
-void Student::setID(const unsigned int n){ID = n;}
+void Student::setID(const unsigned int& n){ID = n;}
 
-void Student::setLevel(const std::string str){level = str;}
+void Student::setLevel(const std::string& str){level = str;}
 
-void Student::setAdvisor(const unsigned int n){advisor = n;}
+void Student::setAdvisor(const unsigned int& n){advisor = n;}
 
-void Student::setGPA(const double n)
+void Student::setGPA(const double& n)
 {
     if((n >= 0) && (n <= 4))
     {
@@ -31,7 +31,7 @@ void Student::setGPA(const double n)
     }
 }
 
-void Student::setMajor(const std::string str) {major = str;}
+void Student::setMajor(const std::string& str) {major = str;}
 
 const unsigned int Student::getAdvisor() const{return advisor;}
 

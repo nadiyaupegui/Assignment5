@@ -11,11 +11,11 @@ class Faculty : public Person
 public:
     Faculty();
     ~Faculty();
-    void setID(const unsigned int n);
-    void setLevel(const std::string str);
-    void addAdvisee(const unsigned int n);
-    void removeAdvisee(const unsigned int n);
-    void setDept(const std::string str);
+    void setID(const unsigned int& n);
+    void setLevel(const std::string& str);
+    void addAdvisee(const unsigned int& n);
+    void removeAdvisee(const unsigned int& n);
+    void setDept(const std::string& str);
 
     const DList<unsigned int>* getAdvisees() const;
     const std::string getDept() const;

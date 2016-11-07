@@ -9,7 +9,7 @@ Person::Person(): name(""), ID(0), level("") {}
 
 Person::~Person(){}
 
-void Person::setName(const std::string str){name = str;}
+void Person::setName(const std::string& str){name = str;}
 
 const std::string Person::getName() const{return name;} 
 

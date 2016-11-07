@@ -10,11 +10,11 @@ class Student : public Person
 public:
     Student();
     ~Student();
-    void setID(const unsigned int n);
-    void setLevel(const std::string str);
-    void setAdvisor(const unsigned int n);
-    void setGPA(const double n);
-    void setMajor(const std::string str);
+    void setID(const unsigned int& n);
+    void setLevel(const std::string& str);
+    void setAdvisor(const unsigned int& n);
+    void setGPA(const double& n);
+    void setMajor(const std::string& str);
 
     const unsigned int getAdvisor() const;
     const double getGPA() const ;
