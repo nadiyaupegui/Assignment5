@@ -23,8 +23,10 @@ TreeNode<T>::TreeNode()
 }
 
 template <class T>
-TreeNode<T>::TreeNode(const T& d) : TreeNode()
+TreeNode<T>::TreeNode(const T& d)
 {
+    left = NULL;
+    right = NULL;
     data = d;
 }
 

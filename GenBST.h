@@ -20,6 +20,7 @@ public:
     TreeNode<T>* getSuccessor(const TreeNode<T>* d);
     bool remove(const T& d);
     void print(const TreeNode<T>* node) const; 
+    void deleteTree(TreeNode<T>* node);
 
 private:
     TreeNode<T>* root;
@@ -40,7 +41,7 @@ GenBST<T>::GenBST(const T& d)
 template <class T>
 GenBST<T>::~GenBST()
 {
-    //Somehow need to traverse through the tree and delete lead nodes until all nodes are removed
+    deleteTree(root); 
 }
 
 template <class T>
@@ -50,7 +51,7 @@ template <class T>
 unsigned int GenBST<T>::getSize() const {return size;}
 
 template <class T>
-const TreeNode<T>* getRoot() const{return root;}
+const TreeNode<T>* GenBST<T>::getRoot() const{return root;}
 
 template <class T>
 void GenBST<T>::insert (const T& d)
@@ -86,6 +87,7 @@ void GenBST<T>::insert (const T& d)
 		}
   	    }
 	}
+    }
 }
 
 template <class T>
@@ -115,11 +117,12 @@ bool GenBST<T>::search(const T& d) const
                 }
             }
         }
-	return true;
+    }
+    return true;
 }
 
 template <class T>
-TreeNode<T>* GenBST<T>:: getSuccessor(const TreeNode<T>* node);
+TreeNode<T>* GenBST<T>:: getSuccessor(const TreeNode<T>* node)
 {
 	TreeNode<T>* sp = node;
 	TreeNode<T>* succ = node;
@@ -145,7 +148,7 @@ TreeNode<T>* GenBST<T>:: getSuccessor(const TreeNode<T>* node);
 template <class T>
 bool GenBST<T>::remove(const T& d)
 {
-    //Checks empty tree
+    //Checks for empty tree
     if (root == NULL)
     {
 	return false;
@@ -167,7 +170,7 @@ bool GenBST<T>::remove(const T& d)
    	    curr = curr -> left;
  	    isLeft = true;
 	}
-	else (d > curr -> data)
+	else if (d > curr -> data)
 	{
 	    curr = curr -> right;
 	    isLeft = false;
@@ -212,8 +215,8 @@ bool GenBST<T>::remove(const T& d)
     {
 	TreeNode<T>* succ = getSuccessor(curr);
 	
-	if (curr === root)
-	    root == succ;
+	if (curr == root)
+	    root = succ;
 	else if(isLeft)
 	    parent -> left = succ;
 	else
@@ -239,4 +242,13 @@ void GenBST<T>::print(const TreeNode<T>* node) const
     print (node -> right);
 }
 
+template <class T>
+void GenBST<T>::deleteTree(TreeNode<T>* node)
+{
+    if (node -> left != NULL)
+    	deleteTree(node -> left);
+    if (node -> right != NULL)
+    	deleteTree(node -> right);
+    delete node;
+}
 #endif //GENBST_H

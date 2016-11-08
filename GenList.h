@@ -1,3 +1,6 @@
+#ifndef GENLIST_H
+#define GENLIST_H
+
 template <class T>
 class GenList
 {
@@ -13,3 +16,5 @@ public:
     virtual int search(const T& key) const = 0;
     virtual unsigned int getSize() const = 0;  
 };
+
+#endif //GENLIST_H
