@@ -129,8 +129,8 @@ template <class T>
 TreeNode<T>* GenBST<T>::getSuccessor(TreeNode<T>* node)
 {
 	TreeNode<T>* sp = node;
-	TreeNode<T>* succ = node;
-	TreeNode<T>* curr = node -> right;
+	TreeNode<T>* succ = node -> right;
+	TreeNode<T>* curr = node -> right -> left;
 
 	while (curr != NULL)
 	{
@@ -138,18 +138,22 @@ TreeNode<T>* GenBST<T>::getSuccessor(TreeNode<T>* node)
 	    	succ = curr;
 		curr = curr -> left;
 	}
-
-        cout << "Final sp is " << sp -> data << endl;	
-	cout << "Final succ 
-	if (succ != node -> right)
+	
+	if(succ != node -> right)
 	{
-		sp -> left = succ -> right;
-		succ -> right = node -> right;
-		
+	    sp -> left = succ -> right;
+	    succ -> left = node -> left;
+	    succ -> right = node -> right;
+	
+	}
+	else
+	{
+	    succ -> left = node -> left;
 	}
 	
-	cout << "Final successor is " << succ - data << endl;
-
+	node -> left = NULL;
+ 	node -> right = NULL;
+	
 	return succ;
 }
 
@@ -168,13 +172,15 @@ bool GenBST<T>::remove(const T d)
     bool isLeft = true;
    
     //Finds node to delete, or returns false if not found
-    while (curr -> data != d) 
+    while (true) 
     {
     	parent = curr;
     	if (curr == NULL)
+	{
 	    return false; //No obect was found
+	}
 
-  	if (d < curr -> data)
+  	else if (d < curr -> data)
 	{
    	    curr = curr -> left;	
  	    isLeft = true;
@@ -184,15 +190,16 @@ bool GenBST<T>::remove(const T d)
 	    curr = curr -> right;
 	    isLeft = false;
 	}
-    }
 
-    cout << "Final curr value is " << curr -> data << endl;
-    cout << "Final parent value is " << parent -> data << endl;
+        else if (d == curr -> data)
+	{
+	    break;
+	}
+    }
 
     //Removal of node with no children
     if ((curr -> left == NULL) && (curr -> right == NULL))
     {
-	cout << "No children." << endl;
 	if (curr == root)
 	    root = NULL;
 	else if (isLeft)
@@ -227,16 +234,18 @@ bool GenBST<T>::remove(const T d)
     else 
     {
 	TreeNode<T>* succ = getSuccessor(curr);
-	
-	if (curr == root)
+
+	if(curr == root)
 	    root = succ;
 	else if(isLeft)
 	    parent -> left = succ;
 	else
 	    parent -> right = succ;
     }
-    
+       
+    delete curr;
     size--;
+    
     return true;
 }
 
