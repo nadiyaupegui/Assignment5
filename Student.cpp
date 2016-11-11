@@ -39,11 +39,11 @@ void Student::setGPA(const double n)
 
 void Student::setMajor(const std::string& str) {major = str;}
 
-const unsigned int Student::getAdvisor() const{return advisor;}
+unsigned int Student::getAdvisor() const{return advisor;}
 
-const double Student::getGPA() const{return gpa;}
+double Student::getGPA() const{return gpa;}
 
-const std::string Student::getMajor() const{return major;}
+std::string Student::getMajor() const{return major;}
 
 void Student::operator=(Student s)
 {

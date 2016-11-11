@@ -18,8 +18,8 @@ public:
     void removeAdvisee(const unsigned int n);
     void setDept(const std::string& str);
 
-    const DList<unsigned int>* getAdvisees() const;
-    const std::string getDept() const;
+    DList<unsigned int>* getAdvisees() const;
+    std::string getDept() const;
 
     void operator=(Faculty f);
     bool operator==(Faculty f);

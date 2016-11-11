@@ -82,27 +82,79 @@ void Database::printFacultyInfo(const unsigned int n) const
 
 void Database::printAdvisor(const unsigned int n) const
 {
+    //Need to check if student ID is ok
     Student s(n);
     int c = masterStudent -> search(s) -> data.getAdvisor();
-    cout << "Faculty Info for Student ID " << n << ":" << endl;
+    cout << "Advisor Info for Student ID " << n << ":" << endl;
     printFacultyInfo(c);
 }
 
-void Database::printAdvisees(const unsigned int n) const{}
+void Database::printAdvisees(const unsigned int n) const
+{
+    //Need to check if faculty ID si ok
+    Faculty f(n);
+    DList<unsigned int>* list = masterFaculty -> search(n) -> data.getAdvisees();
+    cout << "Advisees' Info for Faculty ID " << n << ":" << endl;
+    int size = list -> getSize();
+    for (int i = 0; i < size; ++i)
+    {
+	printStudentInfo(list -> front());
+	list -> addBack(list -> front());
+	list -> removeFront();
+    }  
+}
 
 bool Database::addStudent(){}
 
-bool Database::deleteStudent(const unsigned int n){}
+bool Database::deleteStudent(const unsigned int n)
+{
+    //Check if student number is good
+    Student s(n);
+    return (masterStudent -> remove(s));  
+}
 
 bool Database::addFaculty(){}
 
-bool Database::deleteFaculty(const unsigned int n){}
+bool Database::deleteFaculty(const unsigned int n)
+{
+    //Check if faculty number is good
+    Faculty f(n);
+    return (masterFaculty -> remove(f));
+}
 
-bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid){} 
+bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid)
+{
+    //Check that student and faculty ID's given are okay
+    Student s(sid);
+    int a = masterStudent -> search(s) -> data.getAdvisor();
+    
+    //Check that fid is in database
+    masterStudent -> search(s) -> data.setAdvisor(fid);
 
-bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid){} 
+    if (a != 0)
+    {
+        Faculty oldAd(a);
+        masterFaculty -> search(oldAd) -> data.removeAdvisee(sid);
+    }
 
-void Database::rollBack(){}
+    Faculty newAd(fid);
+    masterFaculty -> search(newAd) -> data.addAdvisee(sid);
+} 
+
+bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
+{
+    //Check that adviess and faculty numbers are in database
+    Faculty f(fid);
+    masterFaculty -> search(f) -> data.removeAdvisee(sid);
+    
+    Student s(sid);
+    masterStudent -> search(s) -> data.setAdvisor(0);
+} 
+
+void Database::rollBack()
+{
+    //Lots to do with this...
+}
 
 //Helper methods
 

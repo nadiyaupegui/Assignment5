@@ -16,9 +16,11 @@ public:
 
     bool empty() const;
     unsigned int getSize() const;
+    T getMax() const;
+    T getMin() const;
     const TreeNode<T>* getRoot() const;
 
-    void insert (T d);
+    void insert(T d);
     TreeNode<T>* search(T d) const;
     TreeNode<T>* getSuccessor(TreeNode<T>* d);
     bool remove(T d);
@@ -56,6 +58,31 @@ bool GenBST<T>::empty() const {return size == 0;}
 
 template <class T>
 unsigned int GenBST<T>::getSize() const {return size;}
+
+
+template <class T>
+T GenBST<T>::getMax() const
+{
+    TreeNode<T>* node = root;
+    while (node -> right != NULL)
+    {
+	node = node -> right;
+    }
+    return node -> data;
+}
+
+
+template <class T>
+T GenBST<T>::getMin() const
+{
+    TreeNode<T>* node = root;
+    while (node -> left != NULL) 
+    {
+        node = node -> left;
+    }
+    return node -> data;
+}
+
 
 template <class T>
 const TreeNode<T>* GenBST<T>::getRoot() const{return root;}

@@ -33,9 +33,9 @@ void Faculty::removeAdvisee(const unsigned int n){advisees -> remove(n);}
 
 void Faculty::setDept(const std::string& str){dept = str;}
 
-const DList<unsigned int>* Faculty::getAdvisees() const{return advisees;} 
+DList<unsigned int>* Faculty::getAdvisees() const{return advisees;} 
 
-const std::string Faculty::getDept() const{return dept;}
+std::string Faculty::getDept() const{return dept;}
 
 void Faculty::operator=(Faculty f)
 {

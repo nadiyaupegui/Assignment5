@@ -17,9 +17,9 @@ public:
     void setGPA(const double n);
     void setMajor(const std::string& str);
 
-    const unsigned int getAdvisor() const;
-    const double getGPA() const ;
-    const std::string getMajor() const;
+    unsigned int getAdvisor() const;
+    double getGPA() const ;
+    std::string getMajor() const;
     
 
     void operator=(Student s);
