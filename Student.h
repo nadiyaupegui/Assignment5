@@ -27,6 +27,7 @@ public:
     bool operator!=(Student s);
     bool operator<(Student s);
     bool operator>(Student s);
+    void operator<<(Student s);
 
 private:
     unsigned int advisor;
