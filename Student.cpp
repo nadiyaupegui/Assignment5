@@ -10,15 +10,21 @@ using namespace std;
 
 Student::Student() : Person(), advisor(0), gpa(-1){major = "";} //Why is major not setting with shortcut?
 
+Student::Student(const unsigned int n) : Person(), advisor(0), gpa(-1) 
+{
+    major = "";
+    ID = n;
+}
+
 Student::~Student(){}
 
-void Student::setID(const unsigned int& n){ID = n;}
+void Student::setID(const unsigned int n){ID = n;}
 
 void Student::setLevel(const std::string& str){level = str;}
 
-void Student::setAdvisor(const unsigned int& n){advisor = n;}
+void Student::setAdvisor(const unsigned int n){advisor = n;}
 
-void Student::setGPA(const double& n)
+void Student::setGPA(const double n)
 {
     if((n >= 0) && (n <= 4))
     {
@@ -39,7 +45,7 @@ const double Student::getGPA() const{return gpa;}
 
 const std::string Student::getMajor() const{return major;}
 
-void Student::operator=(const Student s)
+void Student::operator=(Student s)
 {
     name = s.name;
     ID = s.ID;
@@ -49,10 +55,12 @@ void Student::operator=(const Student s)
     major = s.major;
 }
 
-bool Student::operator==(const Student s){return (ID == s.ID);}
+bool Student::operator==(Student s){return (ID == s.ID);}
 
-bool Student::operator<(const Student s){return (ID < s.ID);}
+bool Student::operator!=(Student s){return (ID != s.ID);}
 
-bool Student::operator>(const Student s) {return (ID > s.ID);}
+bool Student::operator<(Student s){return (ID < s.ID);}
+
+bool Student::operator>(Student s) {return (ID > s.ID);}
 
 #endif //STUDENT_CPP

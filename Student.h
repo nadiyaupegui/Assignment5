@@ -9,11 +9,12 @@ class Student : public Person
 {
 public:
     Student();
+    Student(const unsigned int n);
     ~Student();
-    void setID(const unsigned int& n);
+    void setID(const unsigned int n);
     void setLevel(const std::string& str);
-    void setAdvisor(const unsigned int& n);
-    void setGPA(const double& n);
+    void setAdvisor(const unsigned int n);
+    void setGPA(const double n);
     void setMajor(const std::string& str);
 
     const unsigned int getAdvisor() const;
@@ -21,10 +22,11 @@ public:
     const std::string getMajor() const;
     
 
-    void operator=(const Student s);
-    bool operator==(const Student s);
-    bool operator<(const Student s);
-    bool operator>(const Student s);
+    void operator=(Student s);
+    bool operator==(Student s);
+    bool operator!=(Student s);
+    bool operator<(Student s);
+    bool operator>(Student s);
 
 private:
     unsigned int advisor;

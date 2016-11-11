@@ -9,7 +9,7 @@ public:
     Person();
     ~Person();
     void setName(const std::string& str);
-    virtual void setID(const unsigned int& n) = 0;
+    virtual void setID(const unsigned int n) = 0;
     virtual void setLevel(const std::string& str) = 0;
     const std::string getName() const;
     const unsigned int getID() const;

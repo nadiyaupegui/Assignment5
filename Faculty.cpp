@@ -9,18 +9,27 @@ using namespace std;
 
 Faculty::Faculty() : Person()
 {
-    //Need to declare whatever advisees is
+    advisees = new DList<unsigned int>();
 }
 
-Faculty::~Faculty(){}
+Faculty::Faculty(const unsigned int n) : Person()
+{
+    ID = n;
+    advisees = new DList<unsigned int>();
+}
 
-void Faculty::setID(const unsigned int& n){ID = n;}
+Faculty::~Faculty()
+{
+    delete advisees;
+}
+
+void Faculty::setID(const unsigned int n){ID = n;}
 
 void Faculty::setLevel(const std::string& str){level = str;}
 
-void Faculty::addAdvisee(const unsigned int& n){advisees -> addFront(n);}
+void Faculty::addAdvisee(const unsigned int n){advisees -> addFront(n);}
 
-void Faculty::removeAdvisee(const unsigned int& n){advisees -> remove(n);} 
+void Faculty::removeAdvisee(const unsigned int n){advisees -> remove(n);} 
 
 void Faculty::setDept(const std::string& str){dept = str;}
 
@@ -28,7 +37,7 @@ const DList<unsigned int>* Faculty::getAdvisees() const{return advisees;}
 
 const std::string Faculty::getDept() const{return dept;}
 
-void Faculty::operator=(const Faculty f)
+void Faculty::operator=(Faculty f)
 {
     name = f.name;
     ID = f.ID;
@@ -37,10 +46,12 @@ void Faculty::operator=(const Faculty f)
     advisees = f.advisees;
 }
 
-bool Faculty::operator==(const Faculty f){return (ID == f.ID);}
+bool Faculty::operator==(Faculty f){return (ID == f.ID);}
 
-bool Faculty::operator<(const Faculty f){return (ID < f.ID);}
+bool Faculty::operator!=(Faculty f){return (ID != f.ID);}
 
-bool Faculty::operator>(const Faculty f){return (ID > f.ID);}
+bool Faculty::operator<(Faculty f){return (ID < f.ID);}
+
+bool Faculty::operator>(Faculty f){return (ID > f.ID);}
 
 #endif //FACULTY_CPP

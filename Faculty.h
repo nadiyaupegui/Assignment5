@@ -10,20 +10,22 @@ class Faculty : public Person
 {
 public:
     Faculty();
+    Faculty(const unsigned int n);
     ~Faculty();
-    void setID(const unsigned int& n);
+    void setID(const unsigned int n);
     void setLevel(const std::string& str);
-    void addAdvisee(const unsigned int& n);
-    void removeAdvisee(const unsigned int& n);
+    void addAdvisee(const unsigned int n);
+    void removeAdvisee(const unsigned int n);
     void setDept(const std::string& str);
 
     const DList<unsigned int>* getAdvisees() const;
     const std::string getDept() const;
 
-    void operator=(const Faculty f);
-    bool operator==(const Faculty f);
-    bool operator<(const Faculty f);
-    bool operator>(const Faculty f);
+    void operator=(Faculty f);
+    bool operator==(Faculty f);
+    bool operator!=(Faculty f);
+    bool operator<(Faculty f);
+    bool operator>(Faculty f);
 
 private:
     DList<unsigned int>* advisees; //Maybe a doubly linked list instead? idk

@@ -2,23 +2,26 @@
 #define GENBST_H
 
 #include "TreeNode.h"
+#include <iostream>
+#include <string>
+using namespace std;
 
 template <class T>
 class GenBST
 {
 public:
     GenBST();
-    GenBST(const T d);
+    GenBST(T d);
     ~GenBST();
 
     bool empty() const;
     unsigned int getSize() const;
     const TreeNode<T>* getRoot() const;
 
-    void insert (const T d);
-    bool search(const T d) const;
+    void insert (T d);
+    TreeNode<T>* search(T d) const;
     TreeNode<T>* getSuccessor(TreeNode<T>* d);
-    bool remove(const T d);
+    bool remove(T d);
     void print(const TreeNode<T>* node) const; 
     void deleteTree(TreeNode<T>* node);
 
@@ -35,7 +38,7 @@ GenBST<T>::GenBST():size(0)
 }
 
 template <class T>
-GenBST<T>::GenBST(const T d)
+GenBST<T>::GenBST(T d)
 {
     TreeNode<T>* node = new TreeNode<T>(d);
     root = node;
@@ -58,7 +61,7 @@ template <class T>
 const TreeNode<T>* GenBST<T>::getRoot() const{return root;}
 
 template <class T>
-void GenBST<T>::insert(const T d)
+void GenBST<T>::insert(T d)
 {
     TreeNode<T>* node = new TreeNode<T>(d);
     TreeNode<T>* parent;
@@ -95,11 +98,11 @@ void GenBST<T>::insert(const T d)
 }
 
 template <class T>
-bool GenBST<T>::search(const T d) const
+TreeNode<T>* GenBST<T>::search(T d) const
 {
     TreeNode<T>* curr = root;
     if (root == NULL)
-        return false;
+        return NULL;
     else
     {
         while (d != curr -> data)
@@ -109,7 +112,7 @@ bool GenBST<T>::search(const T d) const
                 curr -> left;
                 if (curr == NULL)
                 {
-                    return false;
+                    return NULL;
                 }
             }
             else if (d > curr -> data)
@@ -117,12 +120,12 @@ bool GenBST<T>::search(const T d) const
                 curr -> right;
                 if (curr == NULL)
                 {
-                    return false;
+                    return NULL;
                 }
             }
         }
     }
-    return true;
+    return curr;
 }
 
 template <class T>
@@ -159,7 +162,7 @@ TreeNode<T>* GenBST<T>::getSuccessor(TreeNode<T>* node)
 
 
 template <class T>
-bool GenBST<T>::remove(const T d)
+bool GenBST<T>::remove(T d)
 {
     //Checks for empty tree
     if (root == NULL)

@@ -25,6 +25,7 @@ public:
     void remove(const T& key);
     int search(const T& key) const;
     unsigned int getSize() const;
+    void print() const;
     void operator=(const DList<T>* copy);
     friend class DNode<T>;
 
@@ -236,6 +237,10 @@ int DList<T>::search(const T& key) const
 
 template <class T>
 unsigned int DList<T>::getSize() const {return size;}
+
+
+template <class T>
+void DList<T>::print()const {}
 
 
 template <class T>
