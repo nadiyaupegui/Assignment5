@@ -82,14 +82,10 @@ void Database::printFacultyInfo(const unsigned int n) const
 
 void Database::printAdvisor(const unsigned int n) const
 {
-    if (goodSID(n))
-    {
-        Student s(n);
-        int c = masterStudent -> search(s) -> data.getAdvisor();
-        cout << "Faculty Info for Student ID " << n << ":" << endl;
-        printFacultyInfo(c);
-
-    }   
+    Student s(n);
+    int c = masterStudent -> search(s) -> data.getAdvisor();
+    cout << "Faculty Info for Student ID " << n << ":" << endl;
+    printFacultyInfo(c);
 }
 
 void Database::printAdvisees(const unsigned int n) const{}
