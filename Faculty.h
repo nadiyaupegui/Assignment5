@@ -26,6 +26,7 @@ public:
     bool operator!=(Faculty f);
     bool operator<(Faculty f);
     bool operator>(Faculty f);
+    void operator<<(Faculty f);
 
 private:
     DList<unsigned int>* advisees; //Maybe a doubly linked list instead? idk
