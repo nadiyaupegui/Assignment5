@@ -17,7 +17,7 @@ public:
 };
 
 template <class T>
-std::ostream& operator<<(std::ostream& os, const DNode node)
+std::ostream& operator<<(std::ostream& os, const DNode<T> node)
 {
     return node.output(os);
 }

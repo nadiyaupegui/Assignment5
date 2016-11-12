@@ -278,7 +278,7 @@ ostream& DList<T>::output(ostream& os) const
 	DList<T>* temp = new DList<T>();
 	 while (!empty())
 	 {
-		 os<<front<<"\n";
+		 os<<head->data<<"\n";
 		 temp -> addFront(front());
 		 removeFront();
 	 }
