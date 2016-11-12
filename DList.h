@@ -268,7 +268,7 @@ void DList<T>::operator=(const DList<T>* copy)
 }
 
 template <class T>
-void operator<<(ostream& os, DList<T>* list)
+friend ostream& operator<<(ostream& os, DList<T>* list)
 {
 	DList<T>* temp = new DList<T>();
 	 while (!list.empty())
