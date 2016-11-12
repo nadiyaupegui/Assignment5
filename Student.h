@@ -20,7 +20,7 @@ public:
     unsigned int getAdvisor() const;
     double getGPA() const ;
     std::string getMajor() const;
-    
+    ostream& output(ostream& os);
 
     void operator=(Student s);
     bool operator==(Student s);
@@ -36,7 +36,7 @@ private:
 
 ostream& operator<<(ostream& os, Student s)
 {
-	os<<s.name<<"\n"<<s.ID<<"\n"<<s.level<<"\n"<<s.advisor<<"\n"<<s.gpa<<"\n"<<s.major;
+	return s.output(os);
 }
 
 #endif //STUDENT_H
