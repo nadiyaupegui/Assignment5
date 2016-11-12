@@ -26,7 +26,7 @@ public:
     int search(const T& key) const;
     unsigned int getSize() const;
     void print() const;
-    output(ostream& os) const
+    ostream& output(ostream& os) const;
     void operator=(const DList<T>* copy);
     friend class DNode<T>;
 
@@ -38,7 +38,7 @@ private:
 
 ostream& operator<<(ostream& os, DList<T>* list)
 {
-	return list->output();
+	return list->output(os);
 }
 
 template <class T>
