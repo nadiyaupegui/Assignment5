@@ -45,6 +45,12 @@ double Student::getGPA() const{return gpa;}
 
 std::string Student::getMajor() const{return major;}
 
+ostream& Student::output(ostream& os) const
+{
+	os<<name<<"\n"<<ID<<"\n"<<level<<"\n"<<advisor<<"\n"<<gpa<<"\n"<<major;
+	return os;
+}
+
 void Student::operator=(Student s)
 {
     name = s.name;
