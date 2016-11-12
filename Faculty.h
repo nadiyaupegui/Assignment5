@@ -32,4 +32,10 @@ private:
     std::string dept;
 
 };
+
+ostream& operator<<(ostream& os, Faculty f)
+{
+    os<<f.name<<"\n"<<f.ID<<"\n"<<f.level<<"\n"<<f.dept<<"\n"<<f.advisees->getSize()<<f.advisees;
+    return os;
+}
 #endif //FACULTY_H
