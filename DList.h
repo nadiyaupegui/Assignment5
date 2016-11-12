@@ -27,7 +27,7 @@ public:
     unsigned int getSize() const;
     void print() const;
     void operator=(const DList<T>* copy);
-    void operator<<(ostream& os, DList<T>* list);
+    friend ostream& operator<<(ostream& os, DList<T>* list);
     friend class DNode<T>;
 
 private:
