@@ -63,9 +63,4 @@ bool Student::operator<(Student s){return (ID < s.ID);}
 
 bool Student::operator>(Student s) {return (ID > s.ID);}
 
-friend ostream& operator<<(ostream& os, Student s)
-{
-	os<<s.name<<"\n"<<s.ID<<"\n"<<s.level<<"\n"<<s.advisor<<"\n"<<s.gpa<<"\n"<<s.major;
-}
-
 #endif //STUDENT_CPP
