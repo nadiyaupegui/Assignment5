@@ -54,7 +54,7 @@ bool Faculty::operator<(Faculty f){return (ID < f.ID);}
 
 bool Faculty::operator>(Faculty f){return (ID > f.ID);}
 
-void Faculty::operator<<(ostream& os, Faculty f)
+friend ostream& operator<<(ostream& os, Faculty f)
 {
     os<<f.name<<"\n"<<f.ID<<"\n"<<f.level<<"\n"<<f.dept<<"\n"<<f.advisees->getSize()<<f.advisees;
     return os;
