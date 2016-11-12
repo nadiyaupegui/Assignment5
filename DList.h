@@ -27,7 +27,6 @@ public:
     unsigned int getSize() const;
     void print() const;
     void operator=(const DList<T>* copy);
-    friend ostream& operator<<(ostream& os, DList<T>* list);
     friend class DNode<T>;
 
 private:
@@ -36,6 +35,22 @@ private:
     unsigned int size;
 };
 
+ostream& operator<<(ostream& os, DList<T>* list)
+{
+	DList<T>* temp = new DList<T>();
+	 while (!list.empty())
+	 {
+		 os<<list->front<<"\n";
+		 temp -> addFront(list -> front());
+		 list -> removeFront();
+	 }
+	while(!temp.empty())
+	{
+		list -> addFront(temp->front());
+		temp->removeFront();
+	}
+	return os;
+}
 
 template <class T>
 DList<T>::DList() : size(0)
@@ -265,23 +280,5 @@ void DList<T>::operator=(const DList<T>* copy)
     copy = temp;
     temp = NULL;
     delete temp;
-}
-
-template <class T>
-friend ostream& operator<<(ostream& os, DList<T>* list)
-{
-	DList<T>* temp = new DList<T>();
-	 while (!list.empty())
-	 {
-		 os<<list->front<<"\n";
-		 temp -> addFront(list -> front());
-		 list -> removeFront();
-	 }
-	while(!temp.empty())
-	{
-		list -> addFront(temp->front());
-		temp->removeFront();
-	}
-	return os;
 }
 #endif //DLIST_H
