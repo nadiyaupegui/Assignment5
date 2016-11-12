@@ -36,6 +36,7 @@ private:
     unsigned int size;
 };
 
+template <class T>
 ostream& operator<<(ostream& os, DList<T>* list)
 {
 	return list->output(os);
