@@ -20,7 +20,7 @@ public:
     unsigned int getAdvisor() const;
     double getGPA() const ;
     std::string getMajor() const;
-    ostream& output(ostream& os);
+    ostream& output(ostream& os) const;
 
     void operator=(Student s);
     bool operator==(Student s);
