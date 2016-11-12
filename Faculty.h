@@ -26,7 +26,6 @@ public:
     bool operator!=(Faculty f);
     bool operator<(Faculty f);
     bool operator>(Faculty f);
-    friend ostream& operator<<(ostream& os, Faculty f);
 
 private:
     DList<unsigned int>* advisees; //Maybe a doubly linked list instead? idk
