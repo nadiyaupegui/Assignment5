@@ -20,7 +20,7 @@ public:
 
     DList<unsigned int>* getAdvisees() const;
     std::string getDept() const;
-
+    ostream& output(ostream& os);
     void operator=(Faculty f);
     bool operator==(Faculty f);
     bool operator!=(Faculty f);
@@ -35,7 +35,6 @@ private:
 
 ostream& operator<<(ostream& os, Faculty f)
 {
-    os<<f.name<<"\n"<<f.ID<<"\n"<<f.level<<"\n"<<f.dept<<"\n"<<f.advisees->getSize()<<f.advisees;
-    return os;
+    return f.output(os);
 }
 #endif //FACULTY_H
