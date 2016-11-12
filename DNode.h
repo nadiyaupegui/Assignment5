@@ -13,8 +13,15 @@ public:
     T data;
     DNode* prev;
     DNode* next;
+    std::ostream& output(std::ostream& os) const;
 };
 
+template <class T>
+std::ostream& operator<<(std::ostream& os, const DNode node)
+{
+    return node.output(os);
+}
+   
 template <class T>
 DNode<T>::DNode() : prev(NULL), next(NULL){}
 
@@ -28,4 +35,10 @@ DNode<T>::~DNode()
     delete next;
 }
 
+template <class T>
+std::ostream& DNode<T>::output(std::ostream& os) const
+{
+    os<<data;
+    return os;
+}
 #endif //DNODE_H
