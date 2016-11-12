@@ -37,6 +37,11 @@ DList<unsigned int>* Faculty::getAdvisees() const{return advisees;}
 
 std::string Faculty::getDept() const{return dept;}
 
+ostream& Faculty::output(ostream& os){
+    os<<name<<"\n"<<ID<<"\n"<<level<<"\n"<<dept<<"\n"<<advisees->getSize()<<advisees;
+    return os;
+}
+
 void Faculty::operator=(Faculty f)
 {
     name = f.name;
