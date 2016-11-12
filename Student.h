@@ -27,7 +27,7 @@ public:
     bool operator!=(Student s);
     bool operator<(Student s);
     bool operator>(Student s);
-    void operator<<(ostream& os, Student s);
+    friend ostream& operator<<(ostream& os, Student s);
 
 private:
     unsigned int advisor;
