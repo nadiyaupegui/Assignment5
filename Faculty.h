@@ -26,15 +26,15 @@ public:
     bool operator!=(Faculty f);
     bool operator<(Faculty f);
     bool operator>(Faculty f);
-
+    friend ostream& operator<<(ostream& os, Faculty f)
+    {
+        return f.output(os);
+    }
 private:
     DList<unsigned int>* advisees; //Maybe a doubly linked list instead? idk
     std::string dept;
 
 };
 
-ostream& operator<<(ostream& os, Faculty f)
-{
-    return f.output(os);
-}
+
 #endif //FACULTY_H
