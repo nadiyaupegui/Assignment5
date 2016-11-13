@@ -25,7 +25,8 @@ public:
     TreeNode<T>* getSuccessor(TreeNode<T>* d);
     bool remove(T d);
     void print(const TreeNode<T>* node) const;
-    void toFile(const TreeNode<T>* node) const;
+    void toFile(const TreeNode<T>* node,string filename) const;
+    void saveTree(string filename) const;
     void deleteTree(TreeNode<T>* node);
 
 private:
@@ -292,22 +293,29 @@ void GenBST<T>::print(const TreeNode<T>* node) const
 }
 
 template <class T>
-void GenBST<T>::toFile(const TreeNode<T>* node) const
+void GenBST<T>::toFile(const TreeNode<T>* node,string filename) const
 {
-    //ofstream myfile;
-    //std::string FileOut ="TranUpegui.txt";
-    //myfile.open(FileOut.c_str(), ios::app);
+    ofstream myfile;
+    myfile.open(filename.c_str(), ios::app);
 
-    //if (node == NULL)
-	//return;
+    if (node == NULL)
+	return;
         
-    //myfile << node -> data << endl;
-    //myfile.close();
+    myfile << node -> data << endl;
+    myfile.close();
 
-    //toFile(node -> left);
-    //toFile(node -> right);
-	
+    toFile(node -> left);
+    toFile(node -> right);
 }
+
+template <class T>
+void GenBST<T>::saveTree(string filename){
+	ofstream myfile;
+	myfile.open(filename.c_str(), ios::out);
+	myfile.close();
+	toFile(root,filename);
+}
+
 template <class T>
 void GenBST<T>::deleteTree(TreeNode<T>* node)
 {
