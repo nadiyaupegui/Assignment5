@@ -4,6 +4,7 @@
 #include "TreeNode.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 template <class T>
