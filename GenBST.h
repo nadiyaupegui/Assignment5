@@ -4,6 +4,7 @@
 #include "TreeNode.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 template <class T>
@@ -309,7 +310,7 @@ void GenBST<T>::toFile(const TreeNode<T>* node,string filename) const
 }
 
 template <class T>
-void GenBST<T>::saveTree(string filename){
+void GenBST<T>::saveTree(string filename) const{
 	ofstream myfile;
 	myfile.open(filename.c_str(), ios::out);
 	myfile.close();
