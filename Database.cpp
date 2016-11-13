@@ -13,7 +13,7 @@
 #include <fstream>
 using namespace std;
 
-Database::Database()
+Database::Database() : studentFile(""), facultyFile("")
 {
     rollBackStudent = new GenStack<GenBST<Student> >();
     rollBackFaculty = new GenStack<GenBST<Faculty> >();
@@ -21,7 +21,13 @@ Database::Database()
     masterFaculty = new GenBST<Faculty>();
 }
 
-Database::Database(std::string studentFile, std::string facultyFile){}
+Database::Database(std::string sFile, std::string fFile) : studentFile(sFile), facultyFile(fFile)
+{
+    rollBackStudent = new GenStack<GenBST<Student> >();
+    rollBackFaculty = new GenStack<GenBST<Faculty> >();
+    masterStudent = new GenBST<Student>();
+    masterFaculty = new GenBST<Faculty>();
+}
 
 Database::~Database()
 {
@@ -62,8 +68,8 @@ void Database::printStudentInfo(const unsigned int n) const
     }
     else
     {
-	cout << "Name: " << node -> data.getName() << endl;
 	cout << "ID: " << node -> data.getID() << endl;
+        cout << "Name: " << node -> data.getName() << endl;
 	cout << "Year: " << node -> data.getLevel() << endl;
 	cout << "Major: " << node -> data.getMajor() << endl;
         cout << "GPA: " << node -> data.getGPA() << endl;
@@ -84,13 +90,13 @@ void Database::printFacultyInfo(const unsigned int n) const
     }
     else
     {
-        cout << "Name: " << node -> data.getName() << endl;
         cout << "ID: " << node -> data.getID() << endl;
+        cout << "Name: " << node -> data.getName() << endl;
         cout << "Level: " << node -> data.getLevel() << endl;
         cout << "Department: " << node -> data.getDept() << endl;
 	cout << "Advisees: " << endl;
-	//node -> data.getAdvisees.print();
-	// Need to make the print method and overload the << operator
+	//cout << node -> data.getAdvisees << endl;
+	//Overloaded operator may not work...
     }
     node = NULL;
     delete node;
@@ -120,7 +126,21 @@ void Database::printAdvisees(const unsigned int n) const
     }  
 }
 
-bool Database::addStudent(){}
+bool Database::addStudent(Student s)
+{
+    //Assuming there is no ID to begin with
+    unsigned int n = masterStudent -> getMax().getID() + 1; //Do modular arithmentic;
+    while (true)
+    {
+        s.setID(n);
+        if(masterStudent -> search(s) == NULL)
+    	{
+	    masterStudent -> insert(s);
+	    return true;
+    	}
+        n += 1; //Do modular arithmentic
+    }
+}
 
 bool Database::deleteStudent(const unsigned int n)
 {
@@ -176,6 +196,9 @@ void Database::rollBack()
 
 bool Database::goodSID(unsigned int n){return n < 3000000;}
 
-bool Database::goodFID(unsigned int n){return ((n >= 3000000) && (n < 5000000));}
+bool Database::goodFID(unsigned int n)
+{
+    return ((n >= 3000000) && (n < 5000000));
+}
 
 #endif //DATABASE_CPP

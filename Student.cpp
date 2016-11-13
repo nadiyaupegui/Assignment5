@@ -47,7 +47,7 @@ std::string Student::getMajor() const{return major;}
 
 ostream& Student::output(ostream& os) const
 {
-	os<<name<<"\n"<<ID<<"\n"<<level<<"\n"<<advisor<<"\n"<<gpa<<"\n"<<major;
+	os<<ID<<"\n"<<name<<"\n"<<level<<"\n"<<advisor<<"\n"<<gpa<<"\n"<<major;
 	return os;
 }
 
