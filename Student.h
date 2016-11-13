@@ -27,16 +27,15 @@ public:
     bool operator!=(Student s);
     bool operator<(Student s);
     bool operator>(Student s);
-
+	friend ostream& operator<<(ostream& os, Student s)
+	{
+		return s.output(os);
+	}
 private:
     unsigned int advisor;
     double gpa;
     std::string major;
 };
 
-ostream& operator<<(ostream& os, Student s)
-{
-	return s.output(os);
-}
 
 #endif //STUDENT_H
