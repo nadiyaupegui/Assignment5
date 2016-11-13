@@ -24,7 +24,8 @@ public:
     TreeNode<T>* search(T d) const;
     TreeNode<T>* getSuccessor(TreeNode<T>* d);
     bool remove(T d);
-    void print(const TreeNode<T>* node) const; 
+    void print(const TreeNode<T>* node) const;
+    void toFile(const TreenNode<T>* node) const;
     void deleteTree(TreeNode<T>* node);
 
 private:
@@ -290,6 +291,20 @@ void GenBST<T>::print(const TreeNode<T>* node) const
     print(node -> right);
 }
 
+template <class T>
+void GenBST<T>::toFile(const TreeNode<T>* node) const
+{
+	ofstream myflie;
+	myfile.open("TranUpegui.txt");
+    if (node == NULL)
+	return;
+        
+    myfile << node -> data << endl;
+    myfile.close();
+    toFile(node -> left);
+    toFile(node -> right);
+	
+}
 template <class T>
 void GenBST<T>::deleteTree(TreeNode<T>* node)
 {
