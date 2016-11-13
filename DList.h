@@ -26,7 +26,7 @@ public:
     int search(const T& key) const;
     unsigned int getSize() const;
     void print() const;
-    ostream& output(ostream& os) const;
+    ostream& output(ostream& os);
     void operator=(const DList<T>* copy);
     friend class DNode<T>;
 
@@ -273,7 +273,7 @@ void DList<T>::operator=(const DList<T>* copy)
 }
 
 template <class T>
-ostream& DList<T>::output(ostream& os) const
+ostream& DList<T>::output(ostream& os)
 {
 	DList<T>* temp = new DList<T>();
 	 while (!empty())
@@ -282,7 +282,7 @@ ostream& DList<T>::output(ostream& os) const
 		 temp -> addFront(front());
 		 removeFront();
 	 }
-	while(!temp.empty())
+	while(!temp->empty())
 	{
 		addFront(temp->front());
 		temp->removeFront();
