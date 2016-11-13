@@ -31,9 +31,25 @@ Database::~Database()
     delete masterStudent;
 }
 
-void Database::printStudents() const{}
+void Database::printStudents(const TreeNode<Student>* node) const
+{
+     if (node == NULL)
+	return;
 
-void Database::printFaculty() const{}
+     cout << node -> data << endl;
+     printStudents(node -> left);
+     printStudents(node -> right);
+}
+
+void Database::printFaculty(const TreeNode<Faculty>* node) const
+{
+   if (node == NULL)
+	return;
+
+    cout << node -> data << endl;
+    printFaculty(node -> left);
+    printFaculty(node -> right);
+}
 
 void Database::printStudentInfo(const unsigned int n) const
 {
