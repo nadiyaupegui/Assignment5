@@ -193,6 +193,11 @@ bool Database::deleteStudent(const unsigned int n)
 
 bool Database::addFaculty(Faculty f)
 {
+    if (masterFaculty -> getSize() == 1000000)
+    {
+	cout << "Max capacity of database reached. Cannot add facutly." << endl;
+	return false;
+    }
     unsigned int n = (masterFaculty -> getMax().getID() + 1) % 1000000 + 4000000;
     while (true)
     {
@@ -219,10 +224,30 @@ bool Database::deleteFaculty(const unsigned int n)
 
 bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid)
 {
+    if(!goodSID(sid))
+    {
+	cout << "Invalid student ID number given." << endl;
+	return false;
+    }
+    if(!goodFID(fid))
+    {
+	cout << "Invalid faculty ID number given." << endl;
+	return false;
+    }
+    if (!existsStudent(sid))
+    {
+	cout << "Student ID given not in database." << endl;
+	return false;
+    }
+    if (!existsFaculty(fid))
+    {
+	cout << "Faculty ID given not in database." << endl;
+	return false;
+    }
+
     Student s(sid);
     int a = masterStudent -> search(s) -> data.getAdvisor();
     
-    //Check that fid is in database
     masterStudent -> search(s) -> data.setAdvisor(fid);
 
     if (a != 0)
@@ -233,11 +258,32 @@ bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid)
 
     Faculty newAd(fid);
     masterFaculty -> search(newAd) -> data.addAdvisee(sid);
+    return true;
 } 
 
 bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
 {
-    //Check that adviess and faculty numbers are in database
+    if(!goodSID(sid))
+    {
+	cout << "Invalid student ID number given." << endl;
+	return false;
+    }
+    if(!goodFID(fid))
+    {
+	cout << "Invalid faculty ID number given." << endl;
+	return false;
+    }
+    if (!existsStudent(sid))
+    {
+	cout << "Student ID given not in database." << endl;
+	return false;
+    }
+    if (!existsFaculty(fid))
+    {
+	cout << "Faculty ID given not in database." << endl;
+	return false;
+    }
+	
     Faculty f(fid);
     masterFaculty -> search(f) -> data.removeAdvisee(sid);
     
