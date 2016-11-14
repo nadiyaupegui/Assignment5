@@ -43,8 +43,12 @@ void Database::printStudents(const TreeNode<Student>* node) const
 {
      if (node == NULL)
 	return;
-
-     cout << node -> data << endl;
+     cout << "ID: " << node -> data.getID() << endl;
+     cout << "Name: " << node -> data.getName() << endl;
+     cout << "Year: " << node -> data.getLevel() << endl;
+     cout << "Major: " << node -> data.getMajor() << endl;
+     cout << "GPA: " << node -> data.getGPA() << endl;
+     cout << "Advisor ID: " << node -> data.getAdvisor() << endl;
      printStudents(node -> left);
      printStudents(node -> right);
 }
@@ -55,8 +59,13 @@ void Database::printFaculty(const TreeNode<Faculty>* node) const
    if (node == NULL)
 	return;
 
-    cout << node -> data << endl;
-    printFaculty(node -> left);
+    
+        cout << "ID: " << node -> data.getID() << endl;
+        cout << "Name: " << node -> data.getName() << endl;
+        cout << "Level: " << node -> data.getLevel() << endl;
+        cout << "Department: " << node -> data.getDept() << endl;
+	cout << "Advisees: " << endl;
+	cout << node -> data.getAdvisees();    printFaculty(node -> left);
     printFaculty(node -> right);
 }
 
@@ -108,7 +117,7 @@ void Database::printFacultyInfo(const unsigned int n) const
         cout << "Level: " << node -> data.getLevel() << endl;
         cout << "Department: " << node -> data.getDept() << endl;
 	cout << "Advisees: " << endl;
-	cout << node -> data.getAdvisees() << endl;
+	cout << node -> data.getAdvisees();
     }
     node = NULL;
     delete node;
