@@ -17,6 +17,7 @@ public:
     GenStack(int c); //Takes capacity of array
     ~GenStack();
 
+    void setCap(const unsigned int n);
     void push(const T data);
     void pop();
     T peek() const; //Returns top element of stack
@@ -91,7 +92,7 @@ void GenStack<T>::pop()
 
 //Returns top element of stack
 template <class T>
-T GenStack<T>::peek()
+T GenStack<T>::peek() const
 {
     if (empty())
     {	    
