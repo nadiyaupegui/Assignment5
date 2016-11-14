@@ -6,8 +6,8 @@ Program::printMenu(){
   cout<<"What would you like to do?"<<endl;
   cout<<"(1) \t Print Students"<<endl;
   cout<<"(2) \t Print Faculty"<<endl;
-  cout<<"(3) \t Find Student"<<endl;
-  cout<<"(4) \t Find Faculty"<<endl;
+  cout<<"(3) \t Find Student and show information"<<endl;
+  cout<<"(4) \t Find Faculty and show information"<<endl;
   cout<<"(5) \t Print Student's Advisor Info"<<endl;
   cout<<"(6) \t Print Faculty Advisee Info"<<endl;
   cout<<"(7) \t Add New Student"<<endl;
