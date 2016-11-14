@@ -2,6 +2,8 @@
 #ifndef GENSTACK_H
 #define GENSTACK_H
 
+#include "DNode.h"
+#include "DList.h"
 #include <iostream>
 #include <cstdlib>
 #include "StackEmpty.h"
@@ -12,89 +14,97 @@ class GenStack
 public:
 
     GenStack(); 
-    GenStack(int s); //Takes capacity of array
+    GenStack(int c); //Takes capacity of array
     ~GenStack();
 
-    void push(const T& data);
-    void pop() throw (StackEmpty);
-    T& peek() const throw (StackEmpty); //Returns top element of stack
+    void push(const T data);
+    void pop();
+    T peek() const; //Returns top element of stack
     int getSize() const;
     int getCap() const;
     bool empty() const;
     
 
 private:
-
-    T* arr; //Array for stack
-    int top;
-    int capacity;
-    void increaseCap(); //Automatically doubles array size if out of room
+    DList<T>* list; //Array for stack
+    unsigned int capacity;
 };
 
 //Default constructor: Sets capacity to 10
 template <class T>
-GenStack<T>::GenStack():capacity(10), top(-1)
+GenStack<T>::GenStack():capacity(5)
 {
-    arr = new T[capacity];
+    list = new DList<T>();
 }
 
 //Takes in intial capacity as input
 template <class T>
-GenStack<T>::GenStack(int c): capacity(c), top(-1)
+GenStack<T>::GenStack(int c): capacity(c)
 {
-    arr = new T[capacity];
+    list = new DList<T>();
 }
 
 //Destructor
 template <class T>
 GenStack<T>::~GenStack()
 {
-    delete [] arr;
+    delete list;
+}
+
+template <class T>
+void GenStack<T>::setCap(const unsigned int n)
+{
+    if (n <= 0)
+    {
+	cout << "Invalid capacity value given." << endl;
+	exit(1);
+    }
+    capacity = n;
 }
 
 //Pushes element onto stack
 template <class T>
-void GenStack<T>::push(const T& data)
+void GenStack<T>::push(const T data)
 {
     if (getSize() == capacity)
     {
-        increaseCap();
+        list -> removeBack();
     }
 
-    arr[++top] = data;
+    list -> addFront(data);
 }
 
-//Pops element off stack
-//Throws StackEmpty if stack is empty
+//Pops element off of stack
 template <class T>
-void GenStack<T>::pop() throw (StackEmpty)
+void GenStack<T>::pop()
 {
     if(empty())
     {
-	throw (StackEmpty("Error: Cannot pop from an empty stack.")); 
+	cout << "Stack empty. Cannot pop element." << endl;
+	exit(1);
     }
     else
     {
-        --top;
+        list -> removeFront();
     }
 }
 
 //Returns top element of stack
 template <class T>
-T& GenStack<T>::peek() const throw (StackEmpty)
+T GenStack<T>::peek()
 {
     if (empty())
     {	    
-        cout << "It made the throw block" << endl;
- 	throw (StackEmpty("Error: Cannot peek from an empty stack."));
+        cout << "Stack empty. Cannot peek element." << endl;
+ 	exit(1);
     }
 
-    return arr[top];
+    return list -> front();
 }
 
 //Returns size of stack      
 template <class T>
-int GenStack<T>::getSize() const{ return (top + 1);}
+int GenStack<T>::getSize() const {return (list -> getSize());}
 
 //Returns capacity of array
 template <class T>
@@ -104,26 +114,7 @@ int GenStack<T>::getCap() const {return capacity;}
 template <class T>
 bool GenStack<T>::empty() const
 {
-    return (top < 0);
-}
-
-//Increases the size of stack array
-template <class T>
-void GenStack<T>::increaseCap()
-{
-    capacity *= 2;
-    T* temp = new T[capacity];
-    for (int i = 0; i < (capacity / 2); ++i)
-    {
-        temp[i] = arr[i];
-    }
-
-    T* old = arr;
-    arr = temp;
-    temp = NULL;
-    old = NULL;
-    delete temp;
-    delete old;
+    return (list -> getSize() == 0);
 }
 
 #endif //GENSTACK_H
