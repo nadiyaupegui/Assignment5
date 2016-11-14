@@ -149,7 +149,21 @@ bool Database::deleteStudent(const unsigned int n)
     return (masterStudent -> remove(s));  
 }
 
-bool Database::addFaculty(){}
+bool Database::addFaculty(Faculty f)
+{
+    //Assuming there is no ID to begin with
+    unsigned int n = masterFaculty -> getMax().getID() + 1; //Do modular arithmentic;
+    while (true)
+    {
+        f.setID(n);
+        if(masterFaculty -> search(f) == NULL)
+    	{
+	    masterFaculty -> insert(f);
+	    return true;
+    	}
+        n += 1; //Do modular arithmentic
+    }
+}
 
 bool Database::deleteFaculty(const unsigned int n)
 {
