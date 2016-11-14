@@ -7,7 +7,14 @@
 #include "Faculty.h"
 #include <string>
 using namespace std;
-
-
+class Program{
+  public:
+    Program();
+    ~Program();
+    printMenu();
+    UserInterface(int n);
+  private:
+    Database* registrar;
+};
 
 #endif
