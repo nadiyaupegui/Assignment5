@@ -55,16 +55,37 @@ Program::UserInterface(int n){
     registrar->addFaculty(f);
   }
   else if (n == 10)//delete faculty
-  {
+
     int fid;
     cin>>fid;
     registrar->deleteFaculty(fid);
   }
   else if (n == 11)//Change Students advisor
   {
+    cout<<"Please enter Student ID"<<endl;
+    int sid;
+    cin>>sid;
+    //print individual student information
+    cout<<"Please enter new faculty ID or enter 1 to view of all existing Faculty"<<endl;
+    int fid;
+    cin>>fid;
+    if(fid == 1){
+      registrar->printAllFaculty();
+      cout<<"PLease enter new faculty ID for advisor"<<endl;
+      cin>>fid;
+    }
+    if(registrar->existsFaculty(fid)&&registrar->existsStudent(sid)){
+      registrar->changeAdvisor(sid,fid);
+    }
+    //fix this later
   }
   else if (n == 12)//remove advises from faculty
-  {}
+  {
+    //iterate through list of advisees
+      //print student info
+      //request faculty input
+      //reassign
+  }
   else if (n == 13)//rollback
   {}
   else if(n ==14)//exit
