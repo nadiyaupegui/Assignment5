@@ -29,8 +29,9 @@ public:
     void toFile(const TreeNode<T>* node, std::string filename) const;
     void saveTree(std::string filename) const;
     void deleteTree(TreeNode<T>* node);
-    bool isEqual(TreeNode<T>* root1, TreeNode<T>* root2)const;
-    bool operator==(GenBST<T> bst) const;
+    bool isEqual(TreeNode<T>* root1, TreeNode<T>* root2);
+    bool operator==(GenBST<T> bst);
+    bool operator!=(GenBST<T> bst);
 	
 private:
     TreeNode<T>* root;
@@ -330,7 +331,7 @@ void GenBST<T>::deleteTree(TreeNode<T>* node)
 }
 
 template <class T>
-bool GenBST<T>::isEqual(TreeNode<T>* root1, TreeNode<T>* root2) const
+bool GenBST<T>::isEqual(TreeNode<T>* root1, TreeNode<T>* root2)
 {
     if(root1 -> data != root2 -> data)
 	return false;
@@ -345,9 +346,15 @@ bool GenBST<T>::isEqual(TreeNode<T>* root1, TreeNode<T>* root2) const
 }
 
 template <class T>
-bool GenBST<T>::operator==(GenBST<T> bst) const
+bool GenBST<T>::operator==(GenBST<T> bst)
 {
-    return (isEqual(root, bst.root);)	
+    return (isEqual(root, bst.root));	
+}
+
+template <class T>
+bool GenBST<T>::operator!=(GenBST<T> bst)
+{
+    return (!isEqual(root, bst.root));
 }
 	
 #endif //GENBST_H
