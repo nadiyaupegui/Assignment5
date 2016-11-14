@@ -95,7 +95,7 @@ void Database::printFacultyInfo(const unsigned int n) const
         cout << "Level: " << node -> data.getLevel() << endl;
         cout << "Department: " << node -> data.getDept() << endl;
 	cout << "Advisees: " << endl;
-	//cout << node -> data.getAdvisees << endl;
+	cout << node -> data.getAdvisees() << endl;
 	//Overloaded operator may not work...
     }
     node = NULL;
