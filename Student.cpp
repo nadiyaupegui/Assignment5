@@ -8,11 +8,11 @@
 #include <cstdlib>
 using namespace std;
 
-Student::Student() : Person(), advisor(0), gpa(-1){major = "";} //Why is major not setting with shortcut?
+Student::Student() : Person(), advisor(0), gpa(-1){major = "Undeclared";} //Why is major not setting with shortcut?
 
 Student::Student(const unsigned int n) : Person(), advisor(0), gpa(-1) 
 {
-    major = "";
+    major = "Undeclared";
     ID = n;
 }
 

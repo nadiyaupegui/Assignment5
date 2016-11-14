@@ -1,5 +1,6 @@
 #include "Person.h"
 #include "Faculty.h"
+#include "Student.h"
 #include "GenList.h"
 #include "DNode.h"
 #include "DList.h"
@@ -7,29 +8,24 @@
 #include "GenBST.h"
 #include <iostream>
 #include <cstdlib>
+#include <fstream>
 #include <string>
 using namespace std;
 
 int main(int argc, char** argv)
 {
-    GenBST<int>* test = new GenBST<int>(); 
-    test -> insert(8);
-    test -> insert(6);
-    test -> insert(15);
-    test -> insert(5);
-    test -> insert(7);
-    test -> insert(13);
-    test -> insert(17);
-    test -> insert(12);
-    
-    cout << "Tree 1" << endl; 
-    test -> print(test -> getRoot());
+    //GenBST<Student>* test = new GenBST<Student>(); 
+    Faculty f (1001001);
+    f.setName("Sally");
+    f.setLevel("Associate Professor");
+    f.setDept("Math");
+    f.addAdvisee(17892);
+    f.addAdvisee(820230);
 
-    cout << "Remove 10" << endl;
-    test -> remove(10);
-    
-    cout << "Tree 2" << endl;
-    test -> print(test -> getRoot());
-    
+
+    ofstream outStream;
+    outStream.open("test.txt", ios::app);
+    outStream << f;
+
     return 0;
 }

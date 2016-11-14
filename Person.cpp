@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-Person::Person(): name(""), ID(0), level("") {}
+Person::Person(): name("Unknown"), ID(0), level("Unknown") {}
 
 Person::~Person(){}
 

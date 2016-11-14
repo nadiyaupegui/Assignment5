@@ -31,6 +31,12 @@ public:
     bool removeAdvisee(const unsigned int fid, const unsigned int sid); //Removes an advisee of a faculty member 
     void rollBack(); //Should roll back trees to last instances of it
 
+    void readStudentFile();
+    void readFacultyFile();
+
+    bool existsStudent(unsigned int n) const;
+    bool existsFaculty(unsigned int n) const;
+
 private:
     GenBST<Student>* masterStudent;
     GenBST<Faculty>* masterFaculty;

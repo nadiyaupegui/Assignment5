@@ -96,7 +96,6 @@ void Database::printFacultyInfo(const unsigned int n) const
         cout << "Department: " << node -> data.getDept() << endl;
 	cout << "Advisees: " << endl;
 	cout << node -> data.getAdvisees() << endl;
-	//Overloaded operator may not work...
     }
     node = NULL;
     delete node;
@@ -174,7 +173,6 @@ bool Database::deleteFaculty(const unsigned int n)
 
 bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid)
 {
-    //Check that student and faculty ID's given are okay
     Student s(sid);
     int a = masterStudent -> search(s) -> data.getAdvisor();
     
@@ -213,6 +211,28 @@ bool Database::goodSID(unsigned int n){return n < 3000000;}
 bool Database::goodFID(unsigned int n)
 {
     return ((n >= 3000000) && (n < 5000000));
+}
+
+bool Database::existsStudent(unsigned int n) const
+{
+    Student s(n);
+    TreeNode<Student>* node = masterStudent -> search(s);
+    if (node == NULL)
+    {
+	return false;
+    }
+    return true;
+}
+
+bool Database::existsFaculty(unsigned int n) const
+{
+    Faculty f(n);
+    TreeNode<Faculty>* node = masterFaculty -> search(f);
+    if (node == NULL)
+    {
+        return false;
+    }
+    return true;
 }
 
 #endif //DATABASE_CPP

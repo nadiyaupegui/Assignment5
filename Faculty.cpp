@@ -7,12 +7,12 @@
 #include <string>
 using namespace std;
 
-Faculty::Faculty() : Person()
+Faculty::Faculty() : Person(), dept("Unknown")
 {
     advisees = new DList<unsigned int>();
 }
 
-Faculty::Faculty(const unsigned int n) : Person()
+Faculty::Faculty(const unsigned int n) : Person(), dept("Unknown")
 {
     ID = n;
     advisees = new DList<unsigned int>();
@@ -20,7 +20,7 @@ Faculty::Faculty(const unsigned int n) : Person()
 
 Faculty::~Faculty()
 {
-    delete advisees;
+    //Deliberately empty
 }
 
 void Faculty::setID(const unsigned int n){ID = n;}
@@ -38,7 +38,7 @@ DList<unsigned int>* Faculty::getAdvisees() const{return advisees;}
 std::string Faculty::getDept() const{return dept;}
 
 ostream& Faculty::output(ostream& os){
-    os<<ID<<"\n"<<name<<"\n"<<level<<"\n"<<dept<<"\n"<<advisees->getSize()<<advisees;
+    os<<ID<<"\n"<<name<<"\n"<<level<<"\n"<<dept<<"\n"<<advisees->getSize()<<"\n"<<advisees;
     return os;
 }
 

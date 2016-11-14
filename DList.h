@@ -38,7 +38,7 @@ private:
 template <class T>
 ostream& operator<<(ostream& os, DList<T>* list)
 {
-	return list->output(os);
+	return list -> output(os);
 }
 
 template <class T>
@@ -270,18 +270,13 @@ void DList<T>::operator=(const DList<T>* copy)
 template <class T>
 ostream& DList<T>::output(ostream& os)
 {
-    DList<T>* temp = new DList<T>();
-    while (!empty())
+    int n = size;
+    for (int  i = 0; i < n; ++i)
     {
-	 os<<head->data<<"\n";
-	 temp -> addFront(front());
+	 os << head -> data << "\n";
+	 addBack(front());
 	 removeFront();
     }
-    while(!temp->empty())
-    {
-	addFront(temp->front());
-	temp->removeFront();
-    }
-	return os;
+    return os;
 }
 #endif //DLIST_H

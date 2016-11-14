@@ -26,8 +26,8 @@ public:
     TreeNode<T>* getSuccessor(TreeNode<T>* d);
     bool remove(T d);
     void print(const TreeNode<T>* node) const;
-    void toFile(const TreeNode<T>* node,string filename) const;
-    void saveTree(string filename) const;
+    void toFile(const TreeNode<T>* node, std::string filename) const;
+    void saveTree(std::string filename) const;
     void deleteTree(TreeNode<T>* node);
 
 private:
