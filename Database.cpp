@@ -59,6 +59,11 @@ void Database::printFaculty(const TreeNode<Faculty>* node) const
 
 void Database::printStudentInfo(const unsigned int n) const
 {
+    if(!goodSID(n))
+    {
+	cout << "Invalid student ID number given." << endl;
+	return;
+    }
     TreeNode<Student>* node = new TreeNode<Student>();
     Student s(n);
     node = masterStudent -> search(s);
@@ -81,6 +86,11 @@ void Database::printStudentInfo(const unsigned int n) const
 
 void Database::printFacultyInfo(const unsigned int n) const
 {
+    if(!goodFID(n))
+    {
+	cout << "Invalid faculty ID number given." << endl;
+	return;
+    }
     TreeNode<Faculty>* node = new TreeNode<Faculty>();
     Faculty f(n);
     node = masterFaculty -> search(f);
@@ -103,7 +113,18 @@ void Database::printFacultyInfo(const unsigned int n) const
 
 void Database::printAdvisor(const unsigned int n) const
 {
-    //Need to check if student ID is ok
+    if(!goodSID(n))
+    {
+	cout << "Invalid student ID number given." << endl;
+	return;
+    }
+	
+    if(!existsStudent(n))
+    {
+	cout << "Student ID given does not exist." << endl;
+	return;
+    }
+
     Student s(n);
     int c = masterStudent -> search(s) -> data.getAdvisor();
     cout << "Advisor Info for Student ID " << n << ":" << endl;
@@ -112,7 +133,18 @@ void Database::printAdvisor(const unsigned int n) const
 
 void Database::printAdvisees(const unsigned int n) const
 {
-    //Need to check if faculty ID si ok
+    if(!goodFID(n))
+    {
+	cout << "Invalid faculty ID number given." << endl;
+	return;
+    }
+	
+    if(!existsFaculty(n))
+    {
+	cout << "Faculty ID given does not exist." << endl;
+	return;
+    }
+	
     Faculty f(n);
     DList<unsigned int>* list = masterFaculty -> search(n) -> data.getAdvisees();
     cout << "Advisees' Info for Faculty ID " << n << ":" << endl;
@@ -127,8 +159,12 @@ void Database::printAdvisees(const unsigned int n) const
 
 bool Database::addStudent(Student s)
 {
-    //Assuming there is no ID to begin with
-    unsigned int n = masterStudent -> getMax().getID() + 1; //Do modular arithmentic;
+    if(masterStudent -> getSize() == 1000000)
+    {
+	cout << "Max capacity of database reached. Cannot add student." << endl;
+	return false;
+    }
+    unsigned int n = (masterStudent -> getMax().getID() + 1) % 1000000 + 2000000;
     while (true)
     {
         s.setID(n);
@@ -137,21 +173,24 @@ bool Database::addStudent(Student s)
 	    masterStudent -> insert(s);
 	    return true;
     	}
-        n += 1; //Do modular arithmentic
+        (n += 1) % 1000000 + 2000000;
     }
 }
 
 bool Database::deleteStudent(const unsigned int n)
 {
-    //Check if student number is good
+    if(!goodSID(n))
+    {
+	cout << "Invalid student ID number given." << endl;
+	return false;
+    }
     Student s(n);
     return (masterStudent -> remove(s));  
 }
 
 bool Database::addFaculty(Faculty f)
 {
-    //Assuming there is no ID to begin with
-    unsigned int n = masterFaculty -> getMax().getID() + 1; //Do modular arithmentic;
+    unsigned int n = (masterFaculty -> getMax().getID() + 1) % 1000000 + 4000000;
     while (true)
     {
         f.setID(n);
@@ -160,13 +199,17 @@ bool Database::addFaculty(Faculty f)
 	    masterFaculty -> insert(f);
 	    return true;
     	}
-        n += 1; //Do modular arithmentic
+        (n += 1) % 1000000 + 4000000;
     }
 }
 
 bool Database::deleteFaculty(const unsigned int n)
 {
-    //Check if faculty number is good
+    if(!goodFID(n))
+    {
+	cout << "Invalid faculty ID number given." << endl;
+	return false;
+    }
     Faculty f(n);
     return (masterFaculty -> remove(f));
 }
@@ -206,11 +249,14 @@ void Database::rollBack()
 
 //Helper methods
 
-bool Database::goodSID(unsigned int n){return n < 3000000;}
+bool Database::goodSID(unsigned int n)
+{
+    return ((n >= 2000000) && (n < 3000000));
+}
 
 bool Database::goodFID(unsigned int n)
 {
-    return ((n >= 3000000) && (n < 5000000));
+    return ((n >= 4000000) && (n < 5000000));
 }
 
 bool Database::existsStudent(unsigned int n) const
