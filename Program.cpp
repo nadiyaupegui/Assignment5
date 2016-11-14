@@ -26,9 +26,22 @@ Program::UserInterface(int n){
   else if (n == 2)//print all faculty
   {registrar->printAllFaculty();}
   else if (n == 3)//find and display student
-  {}
+  {
+    cout<<"Please enter Student ID"<<endl;
+    int sid;
+    cin>>sid;
+    if(registrar->existsStudent(sid)){
+        registrar->printStudentInfo(sid);
+    }
+  }
   else if (n == 4)//find and display faculty
-  {}
+  {
+    cout<<"Please enter Faculty ID"<<endl;
+    int fid;
+    cin>>fid;
+    registrar->printFacultyInfo(fid);
+
+  }
   else if (n == 5)//print name and info of faculty advisor
   {}
   else if (n == 6)//print name and info for student advisees
