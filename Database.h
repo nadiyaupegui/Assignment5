@@ -25,7 +25,7 @@ public:
 
     bool addStudent(Student s); //Adds a student and must create a new ID for them
     bool deleteStudent(const unsigned int n); //Deletes student given ID MUST CHECK ADVISEES OF FACULTY
-    bool addFaculty(); //Adds a new faculty member, and must create a new ID for them
+    bool addFaculty(Faculty f); //Adds a new faculty member, and must create a new ID for them
     bool deleteFaculty(const unsigned int n); //Deletes a faculty member given ID
     bool changeAdvisor(const unsigned int sid, const unsigned int fid); //Change student advisor to new faculty member 
     bool removeAdvisee(const unsigned int fid, const unsigned int sid); //Removes an advisee of a faculty member 
