@@ -37,7 +37,7 @@ Database::~Database()
     delete masterStudent;
 }
 
-void Database::printAllStudents() const {printStudents(masterStudent -> getRoot();)}
+void Database::printAllStudents() const {printStudents(masterStudent -> getRoot());}
 
 void Database::printStudents(const TreeNode<Student>* node) const
 {
@@ -48,7 +48,7 @@ void Database::printStudents(const TreeNode<Student>* node) const
      printStudents(node -> left);
      printStudents(node -> right);
 }
-void Database::printAllFaculty() const {printFaculty(masterFaculty -> getRoot();)}
+void Database::printAllFaculty() const {printFaculty(masterFaculty -> getRoot());}
 
 void Database::printFaculty(const TreeNode<Faculty>* node) const
 {
@@ -298,12 +298,12 @@ void Database::rollBack()
 
 //Helper methods
 
-bool Database::goodSID(unsigned int n)
+bool Database::goodSID(unsigned int n) const
 {
     return ((n >= 2000000) && (n < 3000000));
 }
 
-bool Database::goodFID(unsigned int n)
+bool Database::goodFID(unsigned int n) const
 {
     return ((n >= 4000000) && (n < 5000000));
 }
