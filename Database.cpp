@@ -37,6 +37,8 @@ Database::~Database()
     delete masterStudent;
 }
 
+void Database::printAllStudents() const {printStudents(masterStudent -> getRoot();)}
+
 void Database::printStudents(const TreeNode<Student>* node) const
 {
      if (node == NULL)
@@ -46,6 +48,7 @@ void Database::printStudents(const TreeNode<Student>* node) const
      printStudents(node -> left);
      printStudents(node -> right);
 }
+void Database::printAllFaculty() const {printFaculty(masterFaculty -> getRoot();)}
 
 void Database::printFaculty(const TreeNode<Faculty>* node) const
 {
