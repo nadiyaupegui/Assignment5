@@ -48,8 +48,8 @@ private:
     std::string facultyFile;
 
     //Helper methods
-    bool goodSID(unsigned int n);
-    bool goodFID(unsigned int n);
+    bool goodSID(unsigned int n) const;
+    bool goodFID(unsigned int n) const;
 };
 
 #endif //DATABASE_H
