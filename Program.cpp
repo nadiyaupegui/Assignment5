@@ -17,7 +17,7 @@ Program::printMenu(){
   cout<<"(11) \t Change Student's advisor"<<endl;
   cout<<"(12) \t Remove an advisee from a faculty member"<<endl;
   cout<<"(13) \t Rollback"<<endl;
-  cout<<"(14) \t Exit"
+  cout<<"(14) \t Exit"<<endl;
 
 
 Program::UserInterface(int n){
