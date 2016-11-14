@@ -16,7 +16,9 @@ public:
     Database(std::string sFile, std::string fFile);
     ~Database();
 
-    void printStudents(const TreeNode<Student>* node) const; //Must be sorted by ascending order
+    void printAllStudents() const;
+    void printStudents(const TreeNode<Student>* node) const; //Must be sorted by ascending or
+    void printAllFaculty() const;
     void printFaculty(const TreeNode<Faculty>* node) const; //Must be sorted by ascending order
     void printStudentInfo(const unsigned int n) const; //Finds and displays student info given ID
     void printFacultyInfo(const unsigned int n) const; //Finds and displays student info given ID
