@@ -18,13 +18,13 @@ Program::printMenu(){
   cout<<"(12) \t Remove an advisee from a faculty member"<<endl;
   cout<<"(13) \t Rollback"<<endl;
   cout<<"(14) \t Exit"
-}
+
 
 Program::UserInterface(int n){
   if(n == 1)//print all students
-  {}
+  {registrar->printAllStudents();}
   else if (n == 2)//print all faculty
-  {}
+  {registrar->printAllFaculty();}
   else if (n == 3)//find and display student
   {}
   else if (n == 4)//find and display faculty
@@ -34,15 +34,35 @@ Program::UserInterface(int n){
   else if (n == 6)//print name and info for student advisees
   {}
   else if (n == 7)//add new student
-  {}
+  {
+    int sid;
+    cin>>sid;
+    Student s(sid);
+    registrar->addStudent(s);
+  }
   else if (n == 8)//delete studnet
-  {}
+  {
+    int sid;
+    cin>>sid;
+    //assign all the variables and see if the advisees work.
+    registrar->deleteStudent(sid);
+  }
   else if (n == 9)//add new faculty
-  {}
+  {
+    int fid;
+    cin>>fid;
+    Faculty f(fid);
+    registrar->addFaculty(f);
+  }
   else if (n == 10)//delete faculty
-  {}
+  {
+    int fid;
+    cin>>fid;
+    registrar->deleteFaculty(fid);
+  }
   else if (n == 11)//Change Students advisor
-  {}
+  {
+  }
   else if (n == 12)//remove advises from faculty
   {}
   else if (n == 13)//rollback
