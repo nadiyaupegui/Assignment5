@@ -18,7 +18,7 @@ Program::printMenu(){
   cout<<"(12) \t Remove an advisee from a faculty member"<<endl;
   cout<<"(13) \t Rollback"<<endl;
   cout<<"(14) \t Exit"<<endl;
-
+}
 
 Program::UserInterface(int n){
   if(n == 1)//print all students
@@ -30,9 +30,7 @@ Program::UserInterface(int n){
     cout<<"Please enter Student ID"<<endl;
     int sid;
     cin>>sid;
-    if(registrar->existsStudent(sid)){
-        registrar->printStudentInfo(sid);
-    }
+    registrar->printStudentInfo(sid);
   }
   else if (n == 4)//find and display faculty
   {
@@ -40,12 +38,21 @@ Program::UserInterface(int n){
     int fid;
     cin>>fid;
     registrar->printFacultyInfo(fid);
-
   }
-  else if (n == 5)//print name and info of faculty advisor
-  {}
+  else if (n == 5)//print name and info of faculty advisor given student ID
+  {
+    cout<<"Please enter Student ID"<<endl;
+    int sid;
+    cin>>sid;
+    printAdvisor(sid);
+  }
   else if (n == 6)//print name and info for student advisees
-  {}
+  {
+    cout<<"Please enter Faculty ID"<<endl;
+    int fid;
+    cin>>fid;
+    printAdvisees(fid);
+  }
   else if (n == 7)//add new student
   {
     int sid;
@@ -59,6 +66,7 @@ Program::UserInterface(int n){
     cin>>sid;
     //assign all the variables and see if the advisees work.
     registrar->deleteStudent(sid);
+    //need to remove student from advisee list of faculty
   }
   else if (n == 9)//add new faculty
   {
@@ -68,7 +76,7 @@ Program::UserInterface(int n){
     registrar->addFaculty(f);
   }
   else if (n == 10)//delete faculty
-
+  {
     int fid;
     cin>>fid;
     registrar->deleteFaculty(fid);
