@@ -24,7 +24,7 @@ public:
     void printFacultyInfo(const unsigned int n) const; //Finds and displays student info given ID
     void printAdvisor(const unsigned int n) const; //Print the name and info of advisor
     void printAdvisees(const unsigned int n) const; //Prints ALL advisees of given faculty ID
-
+    void adoptOrphans(); //when faculty is removed adopt the orphan advisees
     bool addStudent(Student s); //Adds a student and must create a new ID for them
     bool deleteStudent(const unsigned int n); //Deletes student given ID MUST CHECK ADVISEES OF FACULTY
     bool addFaculty(Faculty f); //Adds a new faculty member, and must create a new ID for them
