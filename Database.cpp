@@ -316,9 +316,7 @@ bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
 } 
 
 void Database::rollBack()
-{
-    //Lots to do with this...
-}
+{}
 
 //Helper methods
 
