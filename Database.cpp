@@ -28,7 +28,7 @@ Database::Database(std::string sFile, std::string fFile) : studentFile(sFile), f
     masterStudent = new GenBST<Student>();
     masterFaculty = new GenBST<Faculty>();
 }
-
+	
 Database::~Database()
 {
     delete rollBackStudent;
@@ -36,6 +36,36 @@ Database::~Database()
     delete masterFaculty;
     delete masterStudent;
 }
+
+void Database::upload(){
+	studentUpload();
+	facultyUpload();
+}
+
+void Database::studentUpload(){
+	ifstream sFile(studentFile.c_str());
+	if(sFile.fail()){
+		cout<<"Student file failed. No student tree uploaded."<<endl;
+		return
+	}
+	while(!sFile.eof()){
+		Student s;
+		string name;
+		name>>sFile;
+		int id;
+		id>>sFile;
+		string level;
+		level>>sFile;
+		int advisor;
+		advisor>>sFile;
+		double gpa;
+		gpa>>sFile;
+		string major;
+		major>>sFile;
+		s.setID(id)
+	}
+}
+void Database::facultyUpload(){}
 
 void Database::printAllStudents() const {printStudents(masterStudent -> getRoot());}
 
