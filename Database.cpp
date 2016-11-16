@@ -191,6 +191,10 @@ bool Database::addStudent(Student s)
 	cout << "Max capacity of database reached. Cannot add student." << endl;
 	return false;
     }
+    
+    rollBackStudent.push(masterStudent&);
+    rollBackFaculty.push(masterFaculty&);
+
     unsigned int n = (masterStudent -> getMax().getID() + 1) % 1000000 + 2000000;
     while (true)
     {
@@ -316,7 +320,9 @@ bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
 } 
 
 void Database::rollBack()
-{}
+{
+    
+}
 
 //Helper methods
 
