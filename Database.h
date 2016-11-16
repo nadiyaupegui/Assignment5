@@ -38,7 +38,7 @@ public:
 
     bool existsStudent(unsigned int n) const;
     bool existsFaculty(unsigned int n) const;
-
+    void save();
 private:
     GenBST<Student>* masterStudent;
     GenBST<Faculty>* masterFaculty;
