@@ -64,7 +64,6 @@ Program::UserInterface(int n){
   {
     int sid;
     cin>>sid;
-    //assign all the variables and see if the advisees work.
     registrar->deleteStudent(sid);
     //need to remove student from advisee list of faculty
   }
@@ -100,9 +99,8 @@ Program::UserInterface(int n){
       cout<<"PLease enter new faculty ID for advisor"<<endl;
       cin>>fid;
     }
-    if(registrar->existsFaculty(fid)&&registrar->existsStudent(sid)){
       registrar->changeAdvisor(sid,fid);
-    }
+      registrar->removeAdvisee(fid,sid);
     //fix this later
   }
   else if (n == 12)//remove advises from faculty
@@ -110,14 +108,26 @@ Program::UserInterface(int n){
     cout<<"What is the ID number of the faculty you would like to remove?"<<endl;
     int fid;
     cin>>fid;
+    registrar->printAdvisees(fid);
     cout<<"what is the ID number of the student you would like to remove?"<<endl;
-    //iterate through list of advisees
-      //print student info
-      //request faculty input
-      //reassign
+    int sid;
+    cin>>sid;
+    registrar->removeAdvisee(fid,sid);
+    cout<<"What is the ID number of the student's new faculty advisor? Enter 1 to delete the student."<<endl;
+    int nid;
+    cin>>nid;
+    if(nid==1)
+      registrar->deleteStudent();
+    else
+      registrar->changeAdvisor(sid,nid);
   }
   else if (n == 13)//rollback
-  {}
+  {
+    registrar->rollback();
+  }
   else if(n ==14)//exit
-  {}
+  {
+    registrar->save();
+    exit(1);
+  }
 }
