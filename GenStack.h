@@ -6,7 +6,7 @@
 #include "DList.h"
 #include <iostream>
 #include <cstdlib>
-#include "StackEmpty.h"
+using namespace std;
 
 template <class T>
 class GenStack
