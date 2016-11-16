@@ -192,8 +192,8 @@ bool Database::addStudent(Student s)
 	return false;
     }
     
-    rollBackStudent.push(masterStudent&);
-    rollBackFaculty.push(masterFaculty&);
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);
 
     unsigned int n = (masterStudent -> getMax().getID() + 1) % 1000000 + 2000000;
     while (true)
@@ -215,6 +215,10 @@ bool Database::deleteStudent(const unsigned int n)
 	cout << "Invalid student ID number given." << endl;
 	return false;
     }
+
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);
+
     Student s(n);
     return (masterStudent -> remove(s));  
 }
@@ -226,6 +230,10 @@ bool Database::addFaculty(Faculty f)
 	cout << "Max capacity of database reached. Cannot add facutly." << endl;
 	return false;
     }
+
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);
+
     unsigned int n = (masterFaculty -> getMax().getID() + 1) % 1000000 + 4000000;
     while (true)
     {
@@ -246,6 +254,10 @@ bool Database::deleteFaculty(const unsigned int n)
 	cout << "Invalid faculty ID number given." << endl;
 	return false;
     }
+
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);
+
     Faculty f(n);
     return (masterFaculty -> remove(f));
 }
@@ -272,6 +284,9 @@ bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid)
 	cout << "Faculty ID given not in database." << endl;
 	return false;
     }
+
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);   
 
     Student s(sid);
     int a = masterStudent -> search(s) -> data.getAdvisor();
@@ -312,6 +327,9 @@ bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
 	return false;
     }
 	
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);
+
     Faculty f(fid);
     masterFaculty -> search(f) -> data.removeAdvisee(sid);
     
@@ -321,7 +339,11 @@ bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
 
 void Database::rollBack()
 {
-    
+    *masterStudent = rollBackStudent -> peek();
+    *masterFaculty = rollBackFaculty -> peek();
+
+    rollBackStudent -> pop();
+    rollBackFaculty -> pop(); 
 }
 
 //Helper methods
