@@ -46,26 +46,60 @@ void Database::studentUpload(){
 	ifstream sFile(studentFile.c_str());
 	if(sFile.fail()){
 		cout<<"Student file failed. No student tree uploaded."<<endl;
-		return
+		return;
 	}
 	while(!sFile.eof()){
 		Student s;
 		string name;
-		name>>sFile;
+		sFile>>name;
 		int id;
-		id>>sFile;
+		sFile>>id;
 		string level;
-		level>>sFile;
+		sFile>>level;
 		int advisor;
-		advisor>>sFile;
+		sFile>>advisor;
 		double gpa;
-		gpa>>sFile;
+		sFile>>gpa;
 		string major;
-		major>>sFile;
-		s.setID(id)
+		sFile>>major;
+		s.setID(id);
+		s.setName(name):
+		s.setLevel(level);
+		s.setAdvisor(advisor);
+		s.setGPA(gpa);
+		s.setMajor(major);
 	}
 }
-void Database::facultyUpload(){}
+void Database::facultyUpload(){
+	ifstream fFile(facultyFile.c_str());
+	if(fFile.fail()){
+		cout<<"Faculty file failed. No faculty tree uploaded"<<endl;
+		return;
+	}	
+	while(!fFile.eof()){
+		Faculty f;
+		int id;
+		fFile>>id;
+		string name;
+		fFile>>name;
+		string level;
+		fFile>>level;
+		string dept;
+		fFile>>dept;
+		int num;
+		fFile>>num;
+		f.setID(id);
+		f.setName(name);
+		f.setLevel(level);
+		f.setDept(dept);
+		for(int i = 0; i < num;++i)
+		{
+			int advisee;
+			fFile>>advisee;
+			f.addAdvisee(advisee);
+		}
+	}
+}
 
 void Database::printAllStudents() const {printStudents(masterStudent -> getRoot());}
 
