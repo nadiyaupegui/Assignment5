@@ -170,13 +170,26 @@ void Database::printAdvisees(const unsigned int n) const
 }
 
 void Database::adoptOrphans(const unsigned int n,const unsigned int m){
+	//reassigns all of faculty n's advisees to faculty m
+	if(!goodFID(n))
+    	{
+		cout << "Invalid faculty ID number given." << endl;
+		return;
+    	}
+	
+    if(!existsFaculty(n))
+    {
+	cout << "Faculty ID given does not exist." << endl;
+	return;
+    }
 	Faculty f(n);
 	Faculty sub(m);
 	DList<unsigned int>* list = masterFaculty -> search(f)-> data.getAdvisees();
 	int size = list-> getSize();
+	Student s;
 	for (int i = 0; i<size; ++i)
 	{
-		Student s(list->front());
+		s.setID(list->front());
 		masterStudent->search(s)->data.setAdvisor(m);
 		masterFaculty -> search(sub)->data.addAdvisee(list->front());
 		list->addBack(list->front());
