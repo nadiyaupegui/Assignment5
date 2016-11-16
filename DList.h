@@ -273,7 +273,8 @@ ostream& DList<T>::output(ostream& os)
     int n = size;
     for (int  i = 0; i < n; ++i)
     {
-	 os << head -> data << "\n";
+	 os << head -> data;
+	 if(i<n-1){os<<"/n";}
 	 addBack(front());
 	 removeFront();
     }
