@@ -158,7 +158,7 @@ void Database::printAdvisees(const unsigned int n) const
     }
 	
     Faculty f(n);
-    DList<unsigned int>* list = masterFaculty -> search(n) -> data.getAdvisees();
+    DList<unsigned int>* list = masterFaculty -> search(f) -> data.getAdvisees();
     cout << "Advisees' Info for Faculty ID " << n << ":" << endl;
     int size = list -> getSize();
     for (int i = 0; i < size; ++i)
@@ -167,6 +167,21 @@ void Database::printAdvisees(const unsigned int n) const
 	list -> addBack(list -> front());
 	list -> removeFront();
     }  
+}
+
+void Database::adoptOrphans(const unsigned int n,const unsigned int m){
+	Faculty f(n);
+	Faculty sub(m);
+	DList<unsigned int>* list = masterFaculty -> search(f)-> data.getAdvisees();
+	int size = list-> getSize();
+	for (int i = 0; i<size; ++i)
+	{
+		Student s(list->front());
+		masterStudent->search(s)->data.setAdvisor(m);
+		masterFaculty -> search(sub)->data.addAdvisee(list->front());
+		list->addBack(list->front());
+		list->removeFront();
+	}
 }
 
 bool Database::addStudent(Student s)
