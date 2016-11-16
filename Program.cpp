@@ -77,8 +77,13 @@ Program::UserInterface(int n){
   }
   else if (n == 10)//delete faculty
   {
+    cout<<"What is the id number of the faculty you would like to delete?"<<endl;
     int fid;
     cin>>fid;
+    cout<<"What is the id number of the faculty who will take over their advisees?"<<endl;
+    int subid;
+    cin>>subid;
+    registrar->adoptOrphans(fid,subid);
     registrar->deleteFaculty(fid);
   }
   else if (n == 11)//Change Students advisor
