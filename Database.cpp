@@ -395,8 +395,8 @@ bool Database::existsFaculty(unsigned int n) const
 
 void Database::save()
 {
-	masterFaculty->saveTree();
-	masterStudent->saveTree();
+	masterFaculty->saveTree(facultyFile);
+	masterStudent->saveTree(studentFile);
 }
 
 #endif //DATABASE_CPP
