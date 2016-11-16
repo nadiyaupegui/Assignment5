@@ -107,6 +107,10 @@ Program::UserInterface(int n){
   }
   else if (n == 12)//remove advises from faculty
   {
+    cout<<"What is the ID number of the faculty you would like to remove?"<<endl;
+    int fid;
+    cin>>fid;
+    cout<<"what is the ID number of the student you would like to remove?"<<endl;
     //iterate through list of advisees
       //print student info
       //request faculty input
