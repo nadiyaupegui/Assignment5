@@ -27,6 +27,7 @@ Database::Database(std::string sFile, std::string fFile) : studentFile(sFile), f
     rollBackFaculty = new GenStack<GenBST<Faculty> >();
     masterStudent = new GenBST<Student>();
     masterFaculty = new GenBST<Faculty>();
+	upload();
 }
 	
 Database::~Database()
