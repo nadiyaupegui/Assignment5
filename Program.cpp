@@ -132,26 +132,26 @@ void Program::UserInterface(int n){
 
   else if (n == 9)//add new faculty
   {
+    Faculty f;
+	  
     cout<<"Please enter faculty name:"<<endl;
     std::string name;
     cin>>name;
+    f.setName(name);
 
     cout << "Please enter faculty department:" << endl;
     std::string dept;
     cin>>dept;
+    f.setDept(dept);
 
     cout << "Please enter faculty title:" << endl;
     std::string level;
     cin >> level;
+    f.setLevel(level);
 
     cout << "Please enter number of faculty advisees:" << endl;
     int num;
     cin >> num;
-
-    Faculty f;
-    f.setName(name);
-    f.setDept(dept);
-    f.setLevel(level);
   
     if (num >= 0)
     {
@@ -160,13 +160,14 @@ void Program::UserInterface(int n){
 	    cout << "Please enter ID of student advisee #" << i <<":" << endl;
   	    int id;
  	    cin >> id;
+	    //Need to add an ID check here
 	    f.addAdvisee(id);
 	}
     }
 
     if(registrar->addFaculty(f))
     {
-	cout << "Your faculty member was added. Their ID is " << f.getID() << "." << endl;
+	cout << "Your faculty member was added." << endl;
     }
   }
 
