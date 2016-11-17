@@ -1,3 +1,17 @@
+
+#include "GenBST.h"
+#include "TreeNode.h"
+#include "GenStack.h"
+#include "Person.h"
+#include "Student.h"
+#include "Faculty.h"
+#include "Database.h"
+#include "Program.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+using namespace std;
+
 Program::Program(){}
 
 Program::~Program(){}
