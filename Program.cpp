@@ -34,6 +34,14 @@ void Program::printMenu(){
   cout<<"(12) \t Remove an advisee from a faculty member"<<endl;
   cout<<"(13) \t Rollback"<<endl;
   cout<<"(14) \t Exit"<<endl;
+  int choice;
+  cin>>choice;
+  if(0<choice<15){}
+  else{
+    cout<<"invalid choice"<<endl;
+    choice = 14;
+  }
+  UserInterface(choice);
 }
 
 void Program::UserInterface(int n){
@@ -147,4 +155,5 @@ void Program::UserInterface(int n){
     cout<<"Goodnight Everybody!"<<endl;
     exit(1);
   }
+  printMenu();
 }
