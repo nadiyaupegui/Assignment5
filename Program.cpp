@@ -101,19 +101,62 @@ void Program::UserInterface(int n){
     cin >> level;
     s.setLevel(level);
 
-    cout << "Please enter student GPA:" << endl;
+    cout << "Please enter student GPA between 0 and 4, inclusive:" << endl;
     double gpa;
     cin >>gpa;
-    s.setGPA(gpa);
 
-    cout << "Please enter student Advisor: " << endl;
+    while(!s.setGPA(gpa))
+    {
+	cout << "Invalid GPA given." << endl;
+        cout << "Please enter a correct GPA between 0 and 4, inclusive:" << endl;
+        cin >> gpa;
+    }
+
+    cout << "Please enter student Advisor ID. " << endl;
+    cout << "(Faculty ID's are in the 4000000 range):" << endl;
     int advisor;
     cin >> advisor;
-    s.setAdvisor(advisor);
+ 
+    bool choice = true;
+
+    while((!registrar->existsFaculty(advisor)) && choice)
+    {
+	cout << "The Faculty ID you entered does not exist." << endl;
+	cout << "Would you like to enter another one, or assign one later?" << endl;
+        cout << "Warning: Not adding a proper Advisor ID leaves student in violation without an ID." << endl;
+        cout << "Please enter 1 to enter a new ID or 2 to continue." << endl;
+        int c;
+	cin >> c;
+	if (c == 1)
+        {
+	    cout << "Please enter student Advisor ID. " << endl;
+            cout << "(Faculty ID's are in the 4000000 range):" << endl;
+ 	    cin >> advisor;
+        }
+        
+        else if (c == 2)
+	{
+	     cout << "The student's advisor was not set." << endl;
+	     cout << "To add and advisor, go to option 11 of the main menu." << endl;		
+	     choice = false;
+	}
+	else
+	{
+	    cout << "Invalid choice requested. Student's advisor will not be set." << endl;
+ 	    cout << "To add and advisor, go to option 11 of the main menu." << endl; 
+ 	    choice = false;
+	}
+         
+    }   
+
+    if (registrar -> existsFaculty(advisor))
+    { 
+       s.setAdvisor(advisor);
+    }
 
     if(registrar -> addStudent(s))
     {
-	cout << "Your student was added." << endl; 
+	cout << "Your student was added. Their ID number was set to " << s.getID() << "." << endl; 
     }
     
   }
@@ -167,7 +210,7 @@ void Program::UserInterface(int n){
 
     if(registrar->addFaculty(f))
     {
-	cout << "Your faculty member was added." << endl;
+	cout << "Your faculty member was added. Their ID number was set to " << f.getID() << "." << endl;
     }
   }
 

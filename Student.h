@@ -14,7 +14,7 @@ public:
     void setID(const unsigned int n);
     void setLevel(const std::string& str);
     void setAdvisor(const unsigned int n);
-    void setGPA(const double n);
+    bool setGPA(const double n);
     void setMajor(const std::string& str);
 
     unsigned int getAdvisor() const;

@@ -24,16 +24,14 @@ void Student::setLevel(const std::string& str){level = str;}
 
 void Student::setAdvisor(const unsigned int n){advisor = n;}
 
-void Student::setGPA(const double n)
+bool Student::setGPA(const double n)
 {
     if((n >= 0) && (n <= 4))
     {
 	gpa = n;
+	return true;
     }
-    else
-    {
-	cout << "Invalid GPA given. GPA not set." << endl;
-    }
+    return false;
 }
 
 void Student::setMajor(const std::string& str) {major = str;}

@@ -39,31 +39,39 @@ Database::~Database()
     delete masterStudent;
 }
 
-void Database::upload(){
+void Database::upload()
+{
 	studentUpload();
 	facultyUpload();
 }
 
 void Database::studentUpload(){
+
 	ifstream sFile(studentFile.c_str());
 	if(sFile.fail()){
-		cout<<"Student file failed. No student tree uploaded."<<endl;
 		return;
 	}
 	while(!sFile.eof()){
 		Student s;
+
+    		int id;
+		sFile >> id;
+
 		string name;
 		sFile>>name;
-		int id;
-		sFile>>id;
+
 		string level;
 		sFile>>level;
+
 		int advisor;
 		sFile>>advisor;
+
 		double gpa;
 		sFile>>gpa;
+
 		string major;
 		sFile>>major;
+
 		s.setID(id);
 		s.setName(name);
 		s.setLevel(level);
@@ -75,25 +83,31 @@ void Database::studentUpload(){
 void Database::facultyUpload(){
 	ifstream fFile(facultyFile.c_str());
 	if(fFile.fail()){
-		cout<<"Faculty file failed. No faculty tree uploaded"<<endl;
 		return;
 	}	
 	while(!fFile.eof()){
 		Faculty f;
+
 		int id;
 		fFile>>id;
+
 		string name;
 		fFile>>name;
+
 		string level;
 		fFile>>level;
+
 		string dept;
 		fFile>>dept;
+
 		int num;
 		fFile>>num;
+
 		f.setID(id);
 		f.setName(name);
 		f.setLevel(level);
 		f.setDept(dept);
+
 		for(int i = 0; i < num;++i)
 		{
 			int advisee;
@@ -263,7 +277,7 @@ void Database::adoptOrphans(const unsigned int n,const unsigned int m){
 	}
 }
 
-bool Database::addStudent(Student s&)
+bool Database::addStudent(Student& s)
 {
     rollBackStudent -> push(*masterStudent);
     rollBackFaculty -> push(*masterFaculty);
@@ -273,10 +287,10 @@ bool Database::addStudent(Student s&)
         masterStudent -> insert(s);
  	return true;
     }
-
+    return false;
 }
 
-bool Database::createID(Student s&)
+bool Database::createID(Student& s)
 {
     if(masterStudent -> getSize() == 1000000)
     {
@@ -284,7 +298,7 @@ bool Database::createID(Student s&)
 	return false;
     }
 	
-    srand(masterStudent -> getSize() * masterFaculty -> getSize() + 1)
+    srand(masterStudent -> getSize() * masterFaculty -> getSize() + 1);
     int n = rand() % 1000000 + 2000000;
     
     while (true)	
@@ -295,6 +309,7 @@ bool Database::createID(Student s&)
 	    return true;
         }
         n = rand() % 1000000 + 2000000;
+    }
 }
 
 bool Database::deleteStudent(const unsigned int n)
@@ -312,27 +327,38 @@ bool Database::deleteStudent(const unsigned int n)
     return (masterStudent -> remove(s));  
 }
 
-bool Database::addFaculty(Faculty f)
+bool Database::addFaculty(Faculty& f)
 {
-    if (masterFaculty -> getSize() == 1000000)
-    {
-	cout << "Max capacity of database reached. Cannot add facutly." << endl;
-	return false;
-    }
-
     rollBackStudent -> push(*masterStudent);
     rollBackFaculty -> push(*masterFaculty);
 
-    unsigned int n = (masterFaculty -> getMax().getID() + 1) % 1000000 + 4000000;
+    if(createID(f))
+    {
+	masterFaculty -> insert(f);
+	return true;
+    }
+    return false;
+}
+
+bool Database::createID(Faculty& f)
+{
+    if(masterFaculty -> getSize() == 1000000)
+    {
+        cout << "Max capacity of database reached. Cannot add student." << endl;
+        return false;
+    }
+
+    srand(masterStudent -> getSize() * masterFaculty -> getSize() + 1);
+    int n = rand() % 1000000 + 4000000;
+
     while (true)
     {
         f.setID(n);
-        if(masterFaculty -> search(f) == NULL)
-    	{
-	    masterFaculty -> insert(f);
-	    return true;
-    	}
-        (n += 1) % 1000000 + 4000000;
+        if (masterFaculty -> search(f) == NULL)
+        {
+            return true;
+        }
+        n = rand() % 1000000 + 4000000;
     }
 }
 
