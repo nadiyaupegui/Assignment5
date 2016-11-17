@@ -8,6 +8,7 @@
 #include "Student.h"
 #include "Faculty.h"
 #include "Database.h"
+#include <cstdlib>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -262,35 +263,38 @@ void Database::adoptOrphans(const unsigned int n,const unsigned int m){
 	}
 }
 
-bool Database::addStudent(Student s)
+bool Database::addStudent(Student s&)
+{
+    rollBackStudent -> push(*masterStudent);
+    rollBackFaculty -> push(*masterFaculty);
+
+    if(createID(s))
+    {
+        masterStudent -> insert(s);
+ 	return true;
+    }
+
+}
+
+bool Database::createID(Student s&)
 {
     if(masterStudent -> getSize() == 1000000)
     {
 	cout << "Max capacity of database reached. Cannot add student." << endl;
 	return false;
     }
-      
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);
-
-    if (masterStudent -> getSize() == 0)
-    {
-	s.setID(2000000);
-        masterStudent -> insert(s);
- 	return true;
-    }
-
-    unsigned int n = (masterStudent -> getMax().getID() + 1) % 1000000 + 2000000;
-    while (true)
+	
+    srand(masterStudent -> getSize() * masterFaculty -> getSize() + 1)
+    int n = rand() % 1000000 + 2000000;
+    
+    while (true)	
     {
 	s.setID(n);
-        if(masterStudent -> search(s) == NULL)
+        if (masterStudent -> search(s) == NULL)
         {
-	    masterStudent -> insert(s);
 	    return true;
-    	}
-        (n += 1) % 1000000 + 2000000;
-    }
+        }
+        n = rand() % 1000000 + 2000000;
 }
 
 bool Database::deleteStudent(const unsigned int n)
