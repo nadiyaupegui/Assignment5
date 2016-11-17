@@ -297,7 +297,7 @@ void GenBST<T>::print(const TreeNode<T>* node) const
 }
 
 template <class T>
-void GenBST<T>::toFile(const TreeNode<T>* node,string filename) const
+void GenBST<T>::,toFile(const TreeNode<T>* node,string filename) const
 {
     ofstream myfile;
     myfile.open(filename.c_str(), ios::app);
@@ -308,8 +308,8 @@ void GenBST<T>::toFile(const TreeNode<T>* node,string filename) const
     myfile << node -> data << endl;
     myfile.close();
 
-    toFile(node -> left);
-    toFile(node -> right);
+    toFile(node -> left,filename);
+    toFile(node -> right,filename);
 }
 
 template <class T>
