@@ -92,17 +92,20 @@ void Program::UserInterface(int n){
 
     cout<<"Please enter student name:"<<endl;
     std::string name;
-    cin>>name;
+    cin.ignore();
+    getline(cin,name);
     s.setName(name);
 
     cout << "Please enter student major:" << endl;
     std::string major;
-    cin>>major;
+    cin.ignore();
+    getline(cin,major);
     s.setMajor(major);
 
     cout << "Please enter student year:" << endl;
     std::string level;
-    cin >> level;
+    cin.ignore();
+    getline(cin,level);
     s.setLevel(level);
 
     cout << "Please enter student GPA between 0 and 4, inclusive:" << endl;
@@ -183,17 +186,20 @@ void Program::UserInterface(int n){
 	  
     cout<<"Please enter faculty name:"<<endl;
     std::string name;
-    cin>>name;
+    cin.ignore();
+    getline(cin,name);
     f.setName(name);
 
     cout << "Please enter faculty department:" << endl;
     std::string dept;
-    cin>>dept;
+    cin.ignore;
+    getline(cin,dept);
     f.setDept(dept);
 
     cout << "Please enter faculty title:" << endl;
     std::string level;
-    cin >> level;
+    cin.ignore();
+    getline(cin,level);
     f.setLevel(level);
 
     cout << "Please enter number of faculty advisees:" << endl;
