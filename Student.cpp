@@ -32,8 +32,7 @@ void Student::setGPA(const double n)
     }
     else
     {
-	cout << "Error Student::setGPA. Invalid GPA given." << endl;
-	exit(1);
+	cout << "Invalid GPA given. GPA not set." << endl;
     }
 }
 
