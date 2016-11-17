@@ -192,7 +192,7 @@ void Program::UserInterface(int n){
 
     cout << "Please enter faculty department:" << endl;
     std::string dept;
-    cin.ignore;
+    cin.ignore();
     getline(cin,dept);
     f.setDept(dept);
 
