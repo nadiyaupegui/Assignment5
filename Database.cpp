@@ -78,6 +78,8 @@ void Database::studentUpload(){
 		s.setAdvisor(advisor);
 		s.setGPA(gpa);
 		s.setMajor(major);
+
+		masterStudent -> insert(s);
 	}
 }
 void Database::facultyUpload(){
@@ -114,10 +116,18 @@ void Database::facultyUpload(){
 			fFile>>advisee;
 			f.addAdvisee(advisee);
 		}
+		masterFaculty -> insert(f);
 	}
 }
 
-void Database::printAllStudents() const {printStudents(masterStudent -> getRoot());}
+void Database::printAllStudents() const 
+{
+    if (masterStudent -> getSize() == 0)
+    {
+	cout << "There are currently no students in the database." << endl;
+	return;
+    }
+    printStudents(masterStudent -> getRoot());}
 
 void Database::printStudents(const TreeNode<Student>* node) const
 {
@@ -132,7 +142,14 @@ void Database::printStudents(const TreeNode<Student>* node) const
      printStudents(node -> left);
      printStudents(node -> right);
 }
-void Database::printAllFaculty() const {printFaculty(masterFaculty -> getRoot());}
+void Database::printAllFaculty() const 
+{ 
+    if (masterFaculty -> getSize() == 0)
+    {
+	cout << "There are currently no facutly in the database." << endl;
+	return;
+    }
+    printFaculty(masterFaculty -> getRoot());}
 
 void Database::printFaculty(const TreeNode<Faculty>* node) const
 {

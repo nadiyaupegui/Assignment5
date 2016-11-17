@@ -13,7 +13,7 @@
 using namespace std;
 
 Program::Program(){
-  registrar = new Database("tranUpeguiStudent.txt","tranUpeguiFacult.txt");
+  registrar = new Database("tranUpeguiStudent.txt","tranUpeguiFaculty.txt");
 }
 
 Program::~Program(){}
@@ -46,10 +46,14 @@ void Program::printMenu(){
 
 void Program::UserInterface(int n){
   if(n == 1)//print all students
-  {registrar->printAllStudents();}
+  {
+     registrar->printAllStudents(); 
+  }
 
   else if (n == 2)//print all faculty
-  {registrar->printAllFaculty();}
+  {
+     registrar->printAllFaculty();
+  }
 
   else if (n == 3)//find and display student
   {
