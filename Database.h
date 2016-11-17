@@ -14,8 +14,11 @@ class Database
 public:
     Database();
     Database(std::string sFile, std::string fFile);
+   
     ~Database();
-
+    void upload();
+    void studentUpload();
+    void facultyUpload();
     void printAllStudents() const;
     void printStudents(const TreeNode<Student>* node) const; //Must be sorted by ascending or
     void printAllFaculty() const;
