@@ -144,6 +144,7 @@ void Program::UserInterface(int n){
   else if(n ==14)//exit
   {
     registrar->save();
+    cout<<"Goodnight Everybody!"<<endl;
     exit(1);
   }
 }
