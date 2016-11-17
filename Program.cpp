@@ -12,7 +12,9 @@
 #include <fstream>
 using namespace std;
 
-Program::Program(){}
+Program::Program(){
+  registrar = new Daabase("tranUpeguiStudent.txt","tranUpeguiFacult.txt");
+}
 
 Program::~Program(){}
 
