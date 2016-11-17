@@ -27,7 +27,7 @@ Database::Database(std::string sFile, std::string fFile) : studentFile(sFile), f
     rollBackFaculty = new GenStack<GenBST<Faculty> >();
     masterStudent = new GenBST<Student>();
     masterFaculty = new GenBST<Faculty>();
-	upload();
+    upload();
 }
 	
 Database::~Database()
@@ -269,9 +269,13 @@ bool Database::addStudent(Student s)
 	cout << "Max capacity of database reached. Cannot add student." << endl;
 	return false;
     }
+  
+    cout << "2" << endl;
     
     rollBackStudent -> push(*masterStudent);
     rollBackFaculty -> push(*masterFaculty);
+
+    cout << "3" << endl;
 
     unsigned int n = (masterStudent -> getMax().getID() + 1) % 1000000 + 2000000;
     while (true)

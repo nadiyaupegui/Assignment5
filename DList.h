@@ -18,12 +18,12 @@ public:
     bool empty() const;
     const T front() const;
     const T back() const;
-    void addFront(const T& d);
-    void addBack(const T& d);
+    void addFront(const T d);
+    void addBack(const T d);
     void removeFront();
     void removeBack();
-    void remove(const T& key);
-    int search(const T& key) const;
+    void remove(const T key);
+    int search(const T key) const;
     unsigned int getSize() const;
     ostream& output(ostream& os);
     void operator=(const DList<T>* copy);
@@ -88,26 +88,34 @@ const T DList<T>::back() const
 }
 
 template <class T>
-void DList<T>::addFront(const T& d)
+void DList<T>::addFront(const T d)
 {
+    cout << "a" << endl;
+
     DNode<T>* node = new DNode<T>(d);
+ 
+    cout << "b" << endl;
+
     if (empty())
     {
 	tail = node;
+        cout << "c1" << endl;
     }
     else
     {
 	head -> prev = node;
 	node -> next = head;
+        cout << "c2" << endl;
     }
+
     head = node;
     size++;
+    cout << "d" << endl;
 }
 
 template <class T>
-void DList<T>::addBack(const T& d)
+void DList<T>::addBack(const T d)
 {
-
     DNode<T>* node = new DNode<T>(d);
     if (empty())
     {
@@ -175,7 +183,7 @@ void DList<T>::removeBack()
 }
 
 template <class T>
-void DList<T>::remove(const T& key)
+void DList<T>::remove(const T key)
 {
 
     if (empty())
@@ -219,7 +227,7 @@ void DList<T>::remove(const T& key)
 }
 
 template <class T>
-int DList<T>::search(const T& key) const
+int DList<T>::search(const T key) const
 {
     if (empty())
     {

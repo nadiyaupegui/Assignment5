@@ -67,12 +67,19 @@ void GenStack<T>::setCap(const unsigned int n)
 template <class T>
 void GenStack<T>::push(const T data)
 {
+
+    cout <<   4 << endl;
+
     if (getSize() == capacity)
     {
         list -> removeBack();
     }
+    
+    cout << 5 << endl;
 
     list -> addFront(data);
+   
+    cout << 6 << endl;
 }
 
 //Pops element off of stack
