@@ -16,7 +16,7 @@ Program::Program(){}
 
 Program::~Program(){}
 
-Program::printMenu(){
+void Program::printMenu(){
   cout<<"What would you like to do?"<<endl;
   cout<<"(1) \t Print Students"<<endl;
   cout<<"(2) \t Print Faculty"<<endl;
@@ -34,7 +34,7 @@ Program::printMenu(){
   cout<<"(14) \t Exit"<<endl;
 }
 
-Program::UserInterface(int n){
+void Program::UserInterface(int n){
   if(n == 1)//print all students
   {registrar->printAllStudents();}
   else if (n == 2)//print all faculty
@@ -58,14 +58,14 @@ Program::UserInterface(int n){
     cout<<"Please enter Student ID"<<endl;
     int sid;
     cin>>sid;
-    printAdvisor(sid);
+    registrar->printAdvisor(sid);
   }
   else if (n == 6)//print name and info for student advisees
   {
     cout<<"Please enter Faculty ID"<<endl;
     int fid;
     cin>>fid;
-    printAdvisees(fid);
+    registrar->printAdvisees(fid);
   }
   else if (n == 7)//add new student
   {
@@ -131,13 +131,13 @@ Program::UserInterface(int n){
     int nid;
     cin>>nid;
     if(nid==1)
-      registrar->deleteStudent();
+      registrar->deleteStudent(sid);
     else
       registrar->changeAdvisor(sid,nid);
   }
   else if (n == 13)//rollback
   {
-    registrar->rollback();
+    registrar->rollBack();
   }
   else if(n ==14)//exit
   {

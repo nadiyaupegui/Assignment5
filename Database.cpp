@@ -63,7 +63,7 @@ void Database::studentUpload(){
 		string major;
 		sFile>>major;
 		s.setID(id);
-		s.setName(name):
+		s.setName(name);
 		s.setLevel(level);
 		s.setAdvisor(advisor);
 		s.setGPA(gpa);

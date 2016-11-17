@@ -11,8 +11,8 @@ class Program{
   public:
     Program();
     ~Program();
-    printMenu();
-    UserInterface(int n);
+    void printMenu();
+    void UserInterface(int n);
   private:
     Database* registrar;
 };
