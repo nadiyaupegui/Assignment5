@@ -41,7 +41,6 @@ private:
 template <class T>
 GenBST<T>::GenBST():size(0) 
 {
-    root = new TreeNode<T>();
     root = NULL;
 }
 
@@ -57,6 +56,11 @@ template <class T>
 GenBST<T>::~GenBST()
 {
     deleteTree(root); 
+    cout << "Middle" << endl;   
+    if (root != NULL)
+    {
+        delete root;
+    }
 }
 
 template <class T>
@@ -323,11 +327,12 @@ void GenBST<T>::saveTree(string filename) const{
 template <class T>
 void GenBST<T>::deleteTree(TreeNode<T>* node)
 {
-    if (node -> left != NULL)
-    	deleteTree(node -> left);
-    if (node -> right != NULL)
-    	deleteTree(node -> right);
-    delete node;
+   if (node == NULL)
+        return;
+
+    deleteTree(node -> left);
+    deleteTree(node -> right);
+    remove(node -> data);
 }
 
 template <class T>

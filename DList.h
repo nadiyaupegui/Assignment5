@@ -58,6 +58,7 @@ DList<T>::~DList()
     {
 	removeFront();
     }
+
     delete head;
     delete tail;
 }

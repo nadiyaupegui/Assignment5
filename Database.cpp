@@ -269,20 +269,22 @@ bool Database::addStudent(Student s)
 	cout << "Max capacity of database reached. Cannot add student." << endl;
 	return false;
     }
-  
-    cout << "2" << endl;
-    
+      
     rollBackStudent -> push(*masterStudent);
     rollBackFaculty -> push(*masterFaculty);
 
-    cout << "3" << endl;
+    if (masterStudent -> getSize() == 0)
+    {
+	s.setID(2000000);
+ 	return true;
+    }
 
     unsigned int n = (masterStudent -> getMax().getID() + 1) % 1000000 + 2000000;
     while (true)
     {
-        s.setID(n);
+	s.setID(n);
         if(masterStudent -> search(s) == NULL)
-    	{
+        {
 	    masterStudent -> insert(s);
 	    return true;
     	}

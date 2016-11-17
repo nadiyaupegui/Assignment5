@@ -49,7 +49,9 @@ GenStack<T>::GenStack(int c): capacity(c)
 template <class T>
 GenStack<T>::~GenStack()
 {
+    cout << "Start ~GenStack" << endl;
     delete list;
+    cout << "End ~GenStack" << endl;
 }
 
 template <class T>
@@ -68,18 +70,12 @@ template <class T>
 void GenStack<T>::push(const T data)
 {
 
-    cout <<   4 << endl;
-
     if (getSize() == capacity)
     {
         list -> removeBack();
     }
-    
-    cout << 5 << endl;
 
     list -> addFront(data);
-   
-    cout << 6 << endl;
 }
 
 //Pops element off of stack

@@ -31,8 +31,10 @@ DNode<T>::DNode(const T& d) : data(d), prev (NULL), next(NULL){}
 template <class T>
 DNode<T>::~DNode()
 {
+    cout << "Start ~DNode" << endl;
     delete prev;
     delete next;
+    cout << "End ~DNode" << endl;
 }
 
 template <class T>
