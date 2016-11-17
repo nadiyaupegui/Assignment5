@@ -276,6 +276,7 @@ bool Database::addStudent(Student s)
     if (masterStudent -> getSize() == 0)
     {
 	s.setID(2000000);
+        masterStudent -> insert(s);
  	return true;
     }
 

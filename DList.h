@@ -91,27 +91,20 @@ const T DList<T>::back() const
 template <class T>
 void DList<T>::addFront(const T d)
 {
-    cout << "a" << endl;
-
     DNode<T>* node = new DNode<T>(d);
  
-    cout << "b" << endl;
-
     if (empty())
     {
 	tail = node;
-        cout << "c1" << endl;
     }
     else
     {
 	head -> prev = node;
 	node -> next = head;
-        cout << "c2" << endl;
     }
 
     head = node;
     size++;
-    cout << "d" << endl;
 }
 
 template <class T>

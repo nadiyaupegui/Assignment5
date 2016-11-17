@@ -56,7 +56,7 @@ template <class T>
 GenBST<T>::~GenBST()
 {
     deleteTree(root); 
-    cout << "Middle" << endl;   
+       
     if (root != NULL)
     {
         delete root;

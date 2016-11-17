@@ -84,39 +84,37 @@ void Program::UserInterface(int n){
   }
   else if (n == 7)//add new student
   {
+    Student s;
+
     cout<<"Please enter student name:"<<endl;
     std::string name;
     cin>>name;
+    s.setName(name);
 
     cout << "Please enter student major:" << endl;
     std::string major;
     cin>>major;
+    s.setMajor(major);
 
     cout << "Please enter student year:" << endl;
     std::string level;
     cin >> level;
+    s.setLevel(level);
 
     cout << "Please enter student GPA:" << endl;
     double gpa;
     cin >>gpa;
+    s.setGPA(gpa);
 
     cout << "Please enter student Advisor: " << endl;
     int advisor;
     cin >> advisor;
-
-    Student s;
-    s.setName(name);
-    s.setMajor(major);
-    s.setLevel(level);
-    s.setGPA(gpa);
     s.setAdvisor(advisor);
-
-    cout << "1" << endl;
 
     if(registrar -> addStudent(s))
     {
-	cout << "Your student was added. Their ID number is " << s.getID() << "." << endl; 
-    };
+	cout << "Your student was added." << endl; 
+    }
     
   }
 
@@ -126,7 +124,7 @@ void Program::UserInterface(int n){
     int sid;
     cin>>sid;
     
-    if(registrar->deleteStudent(sid));
+    if(registrar -> deleteStudent(sid));
     {
 	cout << "Your student was successfully deleted." << endl;
     }
