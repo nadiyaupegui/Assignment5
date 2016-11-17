@@ -13,7 +13,7 @@
 using namespace std;
 
 Program::Program(){
-  registrar = new Daabase("tranUpeguiStudent.txt","tranUpeguiFacult.txt");
+  registrar = new Database("tranUpeguiStudent.txt","tranUpeguiFacult.txt");
 }
 
 Program::~Program(){}
@@ -93,9 +93,7 @@ void Program::UserInterface(int n){
   }
   else if (n == 9)//add new faculty
   {
-    int fid;
-    cin>>fid;
-    Faculty f(fid);
+    Faculty f();
     registrar->addFaculty(f);
   }
   else if (n == 10)//delete faculty

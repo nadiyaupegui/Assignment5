@@ -5,6 +5,7 @@
 #include "Person.h"
 #include "Student.h"
 #include "Faculty.h"
+#include "Database.h"
 #include <string>
 using namespace std;
 class Program{
