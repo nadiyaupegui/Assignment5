@@ -12,6 +12,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <ctime>
 using namespace std;
 
 Database::Database() : studentFile(""), facultyFile("")
@@ -31,6 +32,7 @@ Database::Database(std::string sFile, std::string fFile) : studentFile(sFile), f
     cout << masterFaculty -> getSize() << endl;
     upload();
     cout << masterFaculty -> getSize() << endl;
+    srand(time(NULL));
 }
 	
 Database::~Database()
@@ -364,7 +366,7 @@ bool Database::createID(Student& s)
 	return false;
     }
 	
-    srand(masterStudent -> getSize() * masterFaculty -> getSize() + 1);
+    
     int n = rand() % 1000000 + 2000000;
     
     while (true)	
@@ -414,7 +416,7 @@ bool Database::createID(Faculty& f)
         return false;
     }
 
-    srand(masterStudent -> getSize() * masterFaculty -> getSize() + 1);
+    
     int n = rand() % 1000000 + 4000000;
 
     while (true)
