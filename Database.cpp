@@ -105,18 +105,24 @@ void Database::studentUpload(){
 void Database::facultyUpload(){
 
 	ifstream fFile(facultyFile.c_str(),std::ios::ate);
-	if(fFile.tellg() == 1)
+	int c;
+        fFile >> c;	
+	cout << c << endl;
+	if(c == 0)
 	{
 		cout<<"Faculty file empty. Starting from blank slate."<<endl;
+		fFile.close();
+		return;
 	}
 
 	fFile.close();
-	
+
 	fFile.open(facultyFile.c_str());	
 	if(fFile.fail()){
 		cout<<"No Faculty File found. Starting from blank slate."<<endl;
 		return;
-	}	
+	}
+	
 	while(!fFile.eof()){
 		Faculty f;
 		

@@ -321,7 +321,15 @@ void GenBST<T>::saveTree(string filename) const{
 	ofstream myfile;
 	myfile.open(filename.c_str(), ios::out);
 	myfile.close();
-	toFile(root,filename);
+
+        if (size == 0)
+	{
+	    myfile.open(filename.c_str(), ios::out);
+	    myfile << 0;
+	    myfile.close();
+	}
+	else
+	    toFile(root,filename);
 }
 
 template <class T>

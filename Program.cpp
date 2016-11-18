@@ -138,14 +138,14 @@ void Program::UserInterface(int n){
 	if (c == 1)
         {
 	    cout << "Please enter student Advisor ID. " << endl;
-            cout << "(Faculty ID's are in the 4000000 range):" << endl;
+            cout << "Faculty ID's are in the 4000000 range:" << endl;
  	    cin >> advisor;
         }
         
         else if (c == 2)
 	{
 	     cout << "The student's advisor was not set." << endl;
-	     cout << "To add and advisor, go to option 11 of the main menu." << endl;		
+	     cout << "To add an advisor, go to option 11 of the main menu." << endl;		
 	     choice = false;
 	}
 	else
