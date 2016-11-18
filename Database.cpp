@@ -49,7 +49,7 @@ void Database::upload()
 
 void Database::studentUpload(){
 	
-	ifstream sFile(studentFile.c_str(),std::ios::ate);
+	ifstream sFile(studentFile.c_str());
 	if(sFile.tellg() == 1)
 	{
 		cout<<"Student file empty. Starting from blank slate."<<endl;
@@ -104,7 +104,7 @@ void Database::studentUpload(){
 }
 void Database::facultyUpload(){
 
-	ifstream fFile(facultyFile.c_str(),std::ios::ate);
+	ifstream fFile(facultyFile.c_str());
 	int c;
         fFile >> c;	
 	cout << c << endl;
