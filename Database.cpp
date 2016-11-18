@@ -557,7 +557,6 @@ bool Database::existsStudent(unsigned int n) const
 
 bool Database::existsFaculty(unsigned int n) const
 {
-    cout << masterFaculty -> getSize() << endl;
     if(masterFaculty -> getSize() == 0)
 	return false;
 
