@@ -347,8 +347,8 @@ void Database::adoptOrphans(const unsigned int n,const unsigned int m){
 
 bool Database::addStudent(Student& s)
 {
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);
+    //rollBackStudent -> push(*masterStudent);
+    //rollBackFaculty -> push(*masterFaculty);
 
     if(createID(s))
     {
@@ -388,8 +388,8 @@ bool Database::deleteStudent(const unsigned int n)
 	return false;
     }
 
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);
+    //rollBackStudent -> push(*masterStudent);
+    //rollBackFaculty -> push(*masterFaculty);
 
     Student s(n);
     return (masterStudent -> remove(s));  
@@ -397,8 +397,8 @@ bool Database::deleteStudent(const unsigned int n)
 
 bool Database::addFaculty(Faculty& f)
 {
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);
+    //rollBackStudent -> push(*masterStudent);
+    //rollBackFaculty -> push(*masterFaculty);
 
     if(createID(f))
     {
@@ -438,8 +438,8 @@ bool Database::deleteFaculty(const unsigned int n)
 	return false;
     }
 
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);
+    //rollBackStudent -> push(*masterStudent);
+    //rollBackFaculty -> push(*masterFaculty);
 
     Faculty f(n);
     return (masterFaculty -> remove(f));
@@ -468,8 +468,8 @@ bool Database::changeAdvisor(const unsigned int sid, const unsigned int fid)
 	return false;
     }
 
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);   
+    //rollBackStudent -> push(*masterStudent);
+    //rollBackFaculty -> push(*masterFaculty);   
 
     Student s(sid);
     int a = masterStudent -> search(s) -> data.getAdvisor();
@@ -510,8 +510,8 @@ bool Database::removeAdvisee(const unsigned int fid, const unsigned int sid)
 	return false;
     }
 	
-    rollBackStudent -> push(*masterStudent);
-    rollBackFaculty -> push(*masterFaculty);
+    //rollBackStudent -> push(*masterStudent);
+    //rollBackFaculty -> push(*masterFaculty);
 
     Faculty f(fid);
     masterFaculty -> search(f) -> data.removeAdvisee(sid);
