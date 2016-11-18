@@ -325,7 +325,7 @@ void GenBST<T>::saveTree(string filename) const{
         if (size == 0)
 	{
 	    myfile.open(filename.c_str(), ios::out);
-	    myfile << 0;
+	    myfile << 1;
 	    myfile.close();
 	}
 	else
