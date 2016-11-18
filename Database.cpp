@@ -48,13 +48,17 @@ void Database::upload()
 }
 
 void Database::studentUpload(){
-	
 	ifstream sFile(studentFile.c_str());
-	if(sFile.tellg() == 1)
+	int c;
+        sFile >> c;	
+	cout << c << endl;
+	if(c == 1)
 	{
 		cout<<"Student file empty. Starting from blank slate."<<endl;
+		sFile.close();
 		return;
 	}
+	
 	sFile.close();
 	
 	sFile.open(studentFile.c_str());
@@ -108,7 +112,7 @@ void Database::facultyUpload(){
 	int c;
         fFile >> c;	
 	cout << c << endl;
-	if(c == 0)
+	if(c == 1)
 	{
 		cout<<"Faculty file empty. Starting from blank slate."<<endl;
 		fFile.close();
