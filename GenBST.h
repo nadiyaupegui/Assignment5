@@ -13,6 +13,7 @@ class GenBST
 public:
     GenBST();
     GenBST(T d);
+    GenBST(GenBST<T>* copy);
     ~GenBST();
 
     bool empty() const;
@@ -30,6 +31,8 @@ public:
     void saveTree(std::string filename) const;
     void deleteTree(TreeNode<T>* node);
     bool isEqual(TreeNode<T>* root1, TreeNode<T>* root2);
+    void makeCopy(GenBST<T>* copy);
+    void clone(TreeNode<T>* curr);
     bool operator==(GenBST<T> bst);
     bool operator!=(GenBST<T> bst);
 	
@@ -50,6 +53,12 @@ GenBST<T>::GenBST(T d)
     TreeNode<T>* node = new TreeNode<T>(d);
     root = node;
     size = 1;
+}
+
+template <class T>
+GenBST<T>::GenBST(GenBST<T>* copy)
+{
+  makeCopy(copy);
 }
 
 template <class T>
@@ -342,6 +351,19 @@ void GenBST<T>::deleteTree(TreeNode<T>* node)
     deleteTree(node -> right);
     remove(node -> data);
 }
+
+template <class T>
+void GenBST<T>::makeCopy(GenBST<T> copy){
+	clone(copy->getRoot)
+}
+
+template<class T>
+void GenBST<T>::clone(TreeNode<T>* curr){
+    insert(curr->data);
+    insert(curr->left->data);
+    insert(curr->right->data);
+}
+
 
 template <class T>
 bool GenBST<T>::isEqual(TreeNode<T>* root1, TreeNode<T>* root2)
