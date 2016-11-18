@@ -46,9 +46,18 @@ void Database::upload()
 }
 
 void Database::studentUpload(){
-
-	ifstream sFile(studentFile.c_str());
+	
+	ifstream sFile(studentFile.c_str(),std::ios::ate);
+	if(sFile.tellg() == 0)
+	{
+		cout<<"Student file empty. Starting from blank slate."<<endl;
+		return;
+	}
+	sFile.close();
+	
+	sFile.open(studentFile.c_str());
 	if(sFile.fail()){
+		cout<<"No student file uploaded. Starting from blank slate."<<endl;
 		return;
 	}
 	while(!sFile.eof()){
@@ -78,13 +87,22 @@ void Database::studentUpload(){
 		s.setAdvisor(advisor);
 		s.setGPA(gpa);
 		s.setMajor(major);
-
 		masterStudent -> insert(s);
 	}
+	sFile.close();
 }
 void Database::facultyUpload(){
-	ifstream fFile(facultyFile.c_str());
+	ifstream fFile(facultyFile.c_str(),std::ios::ate);
+	if(fFile.tellg() == 0)
+	{
+		cout<<"Faculty file empty. Starting from blank slate."<<endl;
+	}
+	fFile.close();
+	
+	fFile.open(facultyFile.c_str());
+	
 	if(fFile.fail()){
+		cout<<"No Faculty File found. Starting from blank slate."<<endl
 		return;
 	}	
 	while(!fFile.eof()){
