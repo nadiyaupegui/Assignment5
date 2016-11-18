@@ -178,12 +178,19 @@ void Database::printAllStudents() const
 	cout << "There are currently no students in the database." << endl;
 	return;
     }
+    if (masterStudent -> getRoot() == NULL)
+    {
+	cout << "There are currently no students in the database." << endl;
+   	return;
+    }
+
     printStudents(masterStudent -> getRoot());}
 
 void Database::printStudents(const TreeNode<Student>* node) const
 {
      if (node == NULL)
 	return;
+
      cout << "ID: " << node -> data.getID() << endl;
      cout << "Name: " << node -> data.getName() << endl;
      cout << "Year: " << node -> data.getLevel() << endl;
@@ -200,6 +207,12 @@ void Database::printAllFaculty() const
 	cout << "There are currently no facutly in the database." << endl;
 	return;
     }
+    if(masterFaculty -> getRoot() == NULL)
+    {
+	cout << "There are currently no facutly in the datavase." << endl;
+	return;
+    }
+
     printFaculty(masterFaculty -> getRoot());}
 
 void Database::printFaculty(const TreeNode<Faculty>* node) const

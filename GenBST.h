@@ -353,8 +353,9 @@ void GenBST<T>::deleteTree(TreeNode<T>* node)
 }
 
 template <class T>
-void GenBST<T>::makeCopy(GenBST<T> copy){
-	clone(copy->getRoot)
+void GenBST<T>::makeCopy(GenBST<T>* copy)
+{
+	clone(copy->getRoot);
 }
 
 template<class T>
