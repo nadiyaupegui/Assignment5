@@ -146,7 +146,7 @@ TreeNode<T>* GenBST<T>::search(T d) const
         {
             if (d < curr -> data)
             {
-                curr -> left;
+                curr=curr -> left;
                 if (curr == NULL)
                 {
                     return NULL;
@@ -154,7 +154,7 @@ TreeNode<T>* GenBST<T>::search(T d) const
             }
             else if (d > curr -> data)
             {
-                curr -> right;
+                curr=curr -> right;
                 if (curr == NULL)
                 {
                     return NULL;
