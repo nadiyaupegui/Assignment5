@@ -28,7 +28,9 @@ Database::Database(std::string sFile, std::string fFile) : studentFile(sFile), f
     rollBackFaculty = new GenStack<GenBST<Faculty> >();
     masterStudent = new GenBST<Student>();
     masterFaculty = new GenBST<Faculty>();
+    cout << masterFaculty -> getSize() << endl;
     upload();
+    cout << masterFaculty -> getSize() << endl;
 }
 	
 Database::~Database()
@@ -48,7 +50,7 @@ void Database::upload()
 void Database::studentUpload(){
 	
 	ifstream sFile(studentFile.c_str(),std::ios::ate);
-	if(sFile.tellg() == 0)
+	if(sFile.tellg() == 1)
 	{
 		cout<<"Student file empty. Starting from blank slate."<<endl;
 		return;
@@ -60,68 +62,84 @@ void Database::studentUpload(){
 		cout<<"No student file uploaded. Starting from blank slate."<<endl;
 		return;
 	}
-	while(!sFile.eof()){
+	while(!sFile.eof())
+	{
 		Student s;
-
+		
     		int id;
 		sFile >> id;
+				
+		string dummy;
+		getline(sFile, dummy);
 
 		string name;
-		sFile>>name;
-
+		getline(sFile, name);
+		
 		string level;
-		sFile>>level;
-
+		getline(sFile, level);
+	
 		int advisor;
 		sFile>>advisor;
 
+		getline(sFile, dummy);
+
 		double gpa;
 		sFile>>gpa;
-
+		
 		string major;
-		sFile>>major;
-
+		sFile.ignore();
+		getline(sFile, major);
+		getline(sFile, dummy);
+		
 		s.setID(id);
 		s.setName(name);
 		s.setLevel(level);
 		s.setAdvisor(advisor);
 		s.setGPA(gpa);
 		s.setMajor(major);
+
 		masterStudent -> insert(s);
 	}
 	sFile.close();
 }
 void Database::facultyUpload(){
+
 	ifstream fFile(facultyFile.c_str(),std::ios::ate);
-	if(fFile.tellg() == 0)
+	if(fFile.tellg() == 1)
 	{
 		cout<<"Faculty file empty. Starting from blank slate."<<endl;
 	}
+
 	fFile.close();
 	
-	fFile.open(facultyFile.c_str());
-	
+	fFile.open(facultyFile.c_str());	
 	if(fFile.fail()){
-		cout<<"No Faculty File found. Starting from blank slate."<<endl
+		cout<<"No Faculty File found. Starting from blank slate."<<endl;
 		return;
 	}	
 	while(!fFile.eof()){
 		Faculty f;
-
+		
 		int id;
 		fFile>>id;
+  		
+ 		string dummy;
+		getline(fFile, dummy);
 
 		string name;
-		fFile>>name;
-
+		fFile.ignore();
+		getline(fFile, name);
+		
 		string level;
-		fFile>>level;
-
+		getline(fFile, level);
+		
 		string dept;
-		fFile>>dept;
-
+		getline(fFile, dept);
+		
 		int num;
 		fFile>>num;
+ 				
+		getline(fFile, dummy);
 
 		f.setID(id);
 		f.setName(name);
@@ -132,11 +150,14 @@ void Database::facultyUpload(){
 		{
 			int advisee;
 			fFile>>advisee;
+			getline(fFile, dummy);
 			f.addAdvisee(advisee);
 		}
 		masterFaculty -> insert(f);
 	}
+	fFile.close();
 }
+
 
 void Database::printAllStudents() const 
 {
@@ -510,6 +531,11 @@ bool Database::goodFID(unsigned int n) const
 
 bool Database::existsStudent(unsigned int n) const
 {
+
+   cout << masterStudent -> getSize() << endl; 
+   if(masterStudent -> getSize() == 0)
+	return false;
+
     Student s(n);
     TreeNode<Student>* node = masterStudent -> search(s);
     if (node == NULL)
@@ -521,6 +547,10 @@ bool Database::existsStudent(unsigned int n) const
 
 bool Database::existsFaculty(unsigned int n) const
 {
+    cout << masterFaculty -> getSize() << endl;
+    if(masterFaculty -> getSize() == 0)
+	return false;
+
     Faculty f(n);
     TreeNode<Faculty>* node = masterFaculty -> search(f);
     if (node == NULL)

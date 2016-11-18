@@ -13,7 +13,7 @@
 using namespace std;
 
 Program::Program(){
-  registrar = new Database("tranUpeguiStudent.txt","tranUpeguiFaculty.txt");
+   registrar = new Database("tranUpeguiStudent.txt","tranUpeguiFaculty.txt");
 }
 
 Program::~Program(){}
@@ -120,10 +120,11 @@ void Program::UserInterface(int n){
     }
 
     cout << "Please enter student Advisor ID. " << endl;
-    cout << "(Faculty ID's are in the 4000000 range):" << endl;
+    cout << "Faculty ID's are in the 4000000 range:" << endl;
+    
     int advisor;
     cin >> advisor;
- 
+
     bool choice = true;
 
     while((!registrar->existsFaculty(advisor)) && choice)
